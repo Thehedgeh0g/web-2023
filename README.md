@@ -1,4 +1,3 @@
 # web-2023
 
-# Лежнин Илья Зафарович
-# ПС-13
+# It's a small blog-site for 
