@@ -1,0 +1,133 @@
+.main{
+    margin: 0px;
+}
+
+
+.top-block{
+    background-image: url(Sources/Post-Pictures/Header-background.jpg);
+    background-color: #DD783F;
+    background-size: cover;
+    top: 0px;
+    
+    padding-bottom: 157px;
+}
+
+.header{
+    padding-top: 3px;
+    padding-bottom: 14px;
+    display: inline-block;
+    width: 75%;
+    padding-left: 12%;
+}
+
+.head-line{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo{
+    font-family: "Lora";
+    color: white;
+    font-size: 26px;
+    font-weight: 400;
+}
+
+.nav-bar{
+    font-size: 15px;
+    width: 350px;
+    text-transform: uppercase;
+}
+
+.nav-bar-labels{
+    font-family: 'Oxygen';
+    font-style: normal;
+    line-height: 20px;
+    font-weight: 400;
+    color: white;
+    text-decoration: none;
+    margin: 0 2%;
+
+    transition: color .2s linear;
+}
+
+.nav-bar-labels:hover{
+    color: #e0aa8b
+}
+
+.tagline{
+    display: block;
+    padding-top: 177px;
+}
+
+.tagline-header {
+    font-family: 'Lora', serif;
+    font-style: normal;
+    color: white;
+    font-size: 50px;
+    font-weight: 400;
+    text-align: center;
+    letter-spacing: 2px;
+} 
+
+.tagline-text {
+    font-family: 'Lora';
+    text-align: center;
+    font-weight: 400px;
+    size: 18px;
+    line-height: 20px;
+    color: white;
+}
+
+.tagline nav {
+  margin-left: 833px;
+}
+
+.tagline-button{
+    background-color: #DD783F;
+    margin-top: 31px;
+    border: none;
+    border-radius: 3px;
+    text-align: center;
+    color:white;
+    font-size: 13px;
+    font-family: 'Oxygen', sans-serif;
+    width: 167px;
+    height: 44px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    cursor: pointer;
+}
+
+
+
+.themes{
+    padding-top: 20px;
+    padding-left: 10%; 
+    padding-right: 10%; 
+}
+
+.themes-navigate{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.themes-labels{
+    font-family: 'Lora';
+    font-style: normal;
+    line-height: 20px;
+    color: #768088;
+    text-decoration: none;
+    margin: 0 6%;
+
+    transition: color .2s linear;
+}
+
+.themes-labels:hover{
+    color: #000000
+}
+
+
+

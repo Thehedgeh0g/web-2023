@@ -4,84 +4,115 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <header>
-        <span>Escape.</span>
-        <nav>
-            <a href="#"><span>HOME</span></a> <a href="#"><span>CATEGORIES</span></a> <a href="#"><span>ABOUT</span></a> <a href="#"><span>CONTACT</span></a>
-        </nav>
+    <title>Escape.</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Oxygen:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="main">
+    <div class="top-block">   
+        <header class="header">
+            <div class="head-line">
+                <h1 class="logo">Escape.</h1>
+                <nav class="nav-bar">
+                    <a class="nav-bar-labels" href="#"><span>HOME</span></a> <a class="nav-bar-labels" href="#"><span>CATEGORIES</span></a> <a class="nav-bar-labels" href="#"><span>ABOUT</span></a> <a class="nav-bar-labels" href="#"><span>CONTACT</span></a>
+                </nav> 
+            </div>
+        </header>
+        
+        <div class="tagline">
+            <h2 class="tagline-header">Let's do it together</h2>
+            <p class="tagline-text">We travel the world in search of stories. Come along for the ride.</p>
+            <button class="tagline-button"> <span> View latest posts </span> </button>
+        </div> 
+    </div>  
+
+<<<<<<< Updated upstream
         <h2>Let's do it together</h2>
         <p>We travel the world in search of stories. Come along for the ride.</p>
         <button href="the-road-ahead.html" > <span> View latest posts </span> </button>
 
         <nav> 
             <a href="#">Nature</a> <a href="#">Photography</a> <a href="#">Relaxation</a> <a href="#">Vacation</a> <a href="#">Travel</a> <a href="#">Adventure</a> 
+=======
+    <div class="themes">
+        <nav class="themes-navigate"> 
+            <a class="themes-labels" href="#">Nature</a> <a class="themes-labels" href="#">Photography</a> <a class="themes-labels" href="#">Relaxation</a> <a class="themes-labels" href="#">Vacation</a> <a class="themes-labels" href="#">Travel</a> <a class="themes-labels" href="#">Adventure</a> 
+>>>>>>> Stashed changes
         </nav>
-    </header>
+    </div>
+
     <article>
-        <section>
-            <h1>Featured Posts</h1>
-            <div>
-                <a href="the-road-ahead.html"><img src="Sources/Post-Pictures/the-road-ahead-background.jpg" alt="the-road-ahead-background.jpg"></a>
-                <p>The Road Ahead</p>
-                <p>The Road ahead might be proved - it might not be.</p>
-                <img src="Sources/Authors/Mat-Vogles.svg" alt="Mat-Vogles"><span>Mat Vogles</span> <span>September 25, 2015</span>
-            </div>  
-            <div>
-                <a href="From-Top-Down.html"><img src="Sources/Post-Pictures/from-top-down-background.jpg" alt="from-top-down-background.jpg"></a>
-                <p>From Top Down</p>
-                <p>Once a year, go someplace you'vee never been before</p>
-                <img src="Sources/Authors/William-Wong.svg" alt="William-Wong.svg"><span>William Wong</span> <span>September 25, 2015</span>
-            </div>  
+        <h2>Featured Posts</h2>
+        <section> 
+            <a href="the-road-ahead.html"><img src="Sources/Post-Pictures/the-road-ahead-background.jpg" alt="northern lights"></a>
+            <h3>The Road Ahead</h3>
+            <p>The Road ahead might be proved - it might not be.</p>
+            <img src="Sources/Authors/Mat-Vogles.svg" alt="Mat-Vogles"><span>Mat Vogles</span> <span>September 25, 2015</span>
+
         </section> 
+        <section> 
+
+            <a href="From-Top-Down.html"><img src="Sources/Post-Pictures/from-top-down-background.jpg" alt="Little balloon"></a>
+            <h3>From Top Down</h3>
+            <p>Once a year, go someplace you'vee never been before</p>
+            <img src="Sources/Authors/William-Wong.svg" alt="William-Wong.svg"><span>William Wong</span> <span>September 25, 2015</span>
+
+        </section>       
+    </article>   
+    <article> 
+        <h2>Most Recent</h2>
         <section>
-            <h1>Most Recent</h1>
-            <div>
-                <a href="Still-Standing-Tall.html"><img src="Sources/Post-Pictures/still-standing-tall-background.jpg" alt="still-standing-tall-background.jpg"></a>
-                <p>Still Standing Tall</p>
-                <p>Life begins at the end of your comfort zone.</p>
-                <img src="Sources/Authors/William-Wong.svg" alt="William-Wong.svg"><span>William Wong</span> <span>September 25, 2015</span>
-            </div>  
-            <div>
-                <a href="Sunny-Side-Up.html"><img src="Sources/Post-Pictures/sunny-side-up-background.jpg" alt="Sunny-Side-Up-background.jpg"></a>
-                <p>Sunny Side Up</p>
-                <p>No place is ever as bad as the tell you it's going to be</p>
-                <img src="Sources/Authors/Mat-Vogles.svg" alt="Mat-Vogles"><span>Mat Vogles</span> <span>September 25, 2015</span>
-            </div>  
-            <div>
-                <a href="Water-Falls.html"><img src="Sources/Post-Pictures/water-falls-background.jpg" alt="water-falls-background.jpg"></a>
-                <p>Water Falls</p>
-                <p>We travel not to escape life, but for life not to escape us.</p>
-                <img src="Sources/Authors/Mat-Vogles.svg" alt="Mat-Vogles"><span>Mat Vogles</span> <span>September 25, 2015</span>
-            </div>
-            <div>
-                <a href="Through-the-Mist.html"><img src="Sources/Post-Pictures/trough-the-mist-background.jpg" alt="trough-the-mist-background.jpg"></a>
-                <p>Through the Mist</p>
-                <p>Travel makes you see what a tiny place you occupy in the world.</p>
-                <img src="Sources/Authors/William-Wong.svg" alt="William-Wong.svg"><span>William Wong</span> <span>September 25, 2015</span>
-            </div>
-            <div>
-                <a href="Awaken-Early.html"><img src="Sources/Post-Pictures/awaken-early-background.jpg" alt="awaken-early-background.jpg"></a>
-                <p>Awaken Early</p>
-                <p>Not all those who wander are lost.</p>
-                <img src="Sources/Authors/Mat-Vogles.svg" alt="Mat-Vogles"><span>Mat Vogles</span> <span>September 25, 2015</span>
-            </div>
-            <div>
-                <a href="Try-it-Always"><img src="Sources/Post-Pictures/try-it-always-background.jpg" alt="try-it-always-background.jpg"></a>
-                <p>Try it Always</p>
-                <p>The world is a book, and those who do not travel read only one page.</p>
-                <img src="Sources/Authors/Mat-Vogles.svg" alt="Mat-Vogles"><span>Mat Vogles</span> <span>September 25, 2015</span>
-            </div>  
-        </section>   
+
+            <a href="Still-Standing-Tall.html"><img src="Sources/Post-Pictures/still-standing-tall-background.jpg" alt="Balloons"></a>
+            <h3>Still Standing Tall</h3>
+            <p>Life begins at the end of your comfort zone.</p>
+            <img src="Sources/Authors/William-Wong.svg" alt="William-Wong.svg"><span>William Wong</span> <span>September 25, 2015</span>
+
+        </section>  
+        <section>
+
+            <a href="Sunny-Side-Up.html"><img src="Sources/Post-Pictures/sunny-side-up-background.jpg" alt="Golden gate"></a>
+            <h3>Sunny Side Up</h3>
+            <p>No place is ever as bad as the tell you it's going to be</p>
+            <img src="Sources/Authors/Mat-Vogles.svg" alt="Mat-Vogles"><span>Mat Vogles</span> <span>September 25, 2015</span>
+
+        </section>  
+        <section>
+
+            <a href="Water-Falls.html"><img src="Sources/Post-Pictures/water-falls-background.jpg" alt="Lake"></a>
+            <h3>Water Falls</h3>
+            <p>We travel not to escape life, but for life not to escape us.</p>
+            <img src="Sources/Authors/Mat-Vogles.svg" alt="Mat-Vogles"><span>Mat Vogles</span> <span>September 25, 2015</span>
+
+        </section>
+        <section>
+            <a href="Through-the-Mist.html"><img src="Sources/Post-Pictures/trough-the-mist-background.jpg" alt="Waves"></a>
+            <h3>Through the Mist</h3>
+            <p>Travel makes you see what a tiny place you occupy in the world.</p>
+            <img src="Sources/Authors/William-Wong.svg" alt="William-Wong.svg"><span>William Wong</span> <span>September 25, 2015</span>
+        </section>
+        <section>
+            <a href="Awaken-Early.html"><img src="Sources/Post-Pictures/awaken-early-background.jpg" alt="Cable car in the fog"></a>
+            <h3>Awaken Early</h3>
+            <p>Not all those who wander are lost.</p>
+            <img src="Sources/Authors/Mat-Vogles.svg" alt="Mat-Vogles"><span>Mat Vogles</span> <span>September 25, 2015</span>
+        </section>
+        <section>
+            <a href="Try-it-Always"><img src="Sources/Post-Pictures/try-it-always-background.jpg" alt="Water fall with rainbowkm                                                                                                                                                                                                                   "></a>
+            <h3>Try it Always</h3>
+            <p>The world is a book, and those who do not travel read only one page.</p>
+            <img src="Sources/Authors/Mat-Vogles.svg" alt="Mat-Vogles"><span>Mat Vogles</span> <span>September 25, 2015</span>
+        </section>     
     </article> 
     <footer>
         <span>Escape.</span>
         <nav>
             <a href="#"><span>HOME</span></a> <a href="#"><span>CATEGORIES</span></a> <a href="#"><span>ABOUT</span></a> <a href="#"><span>CONTACT</span></a>
         </nav>
+        <img src="Sources/Post-Pictures/footer-background.jpg" alt="fog">
     </footer>   
 </body>
 </html>
