@@ -3,12 +3,14 @@
     background-color: #F7F7F7;
 }
 
-.top-background{
-    position: absolute;
-    top: 0%;
-    z-index: -1;
-    width: 100%;
-    height: 500px;
+
+.top__block{
+    background-image: url(Sources/Post-Pictures/Header-background.jpg);
+    background-color: #DD783F;
+    background-size: cover;
+    top: 0px;
+    
+    padding-bottom: 157px;
 }
 
 .header{
@@ -76,7 +78,6 @@
 .tagline{
     display: block;
     padding-top: 177px;
-    padding-bottom: 157px;
 }
 
 .tagline__posts{
