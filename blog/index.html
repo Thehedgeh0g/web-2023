@@ -12,107 +12,142 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="main">
-    <div class="top-block">   
-        <header class="header">
-            <div class="head-line">
-                <h1 class="logo">Escape.</h1>
-                <nav class="nav-bar">
-                    <a class="nav-bar-labels" href="#"><span>HOME</span></a> <a class="nav-bar-labels" href="#"><span>CATEGORIES</span></a> <a class="nav-bar-labels" href="#"><span>ABOUT</span></a> <a class="nav-bar-labels" href="#"><span>CONTACT</span></a>
-                </nav> 
-            </div>
-        </header>
-        
-        <div class="tagline">
-            <h2 class="tagline-header">Let's do it together</h2>
-            <p class="tagline-text">We travel the world in search of stories. Come along for the ride.</p>
-            <button class="tagline-button"> <span> View latest posts </span> </button>
-        </div> 
-    </div>  
-
-<<<<<<< Updated upstream
-        <h2>Let's do it together</h2>
-        <p>We travel the world in search of stories. Come along for the ride.</p>
-        <button href="the-road-ahead.html" > <span> View latest posts </span> </button>
-
-        <nav> 
-            <a href="#">Nature</a> <a href="#">Photography</a> <a href="#">Relaxation</a> <a href="#">Vacation</a> <a href="#">Travel</a> <a href="#">Adventure</a> 
-=======
+    
+    <header class="header">
+        <div class="header__line">
+            <h1 class="header__logo">Escape.</h1>
+            <nav class="header__nav_bar">
+                <a class="nav_bar_labels" href="#"><span>HOME</span></a> <a class="nav_bar_labels" href="#"><span>CATEGORIES</span></a> <a class="nav_bar_labels" href="#"><span>ABOUT</span></a> <a class="nav_bar_labels" href="#"><span>CONTACT</span></a>
+            </nav> 
+        </div>
+    </header>
+    
+    <div class="tagline">
+        <h2 class="tagline__header">Let's do it together</h2>
+        <p class="tagline__text">We travel the world in search of stories. Come along for the ride.</p>
+        <button class="tagline__button"> <span> View latest posts </span> </button>
+    </div> 
+    <img class="top-background" src="Sources/Post-Pictures/Header-background.jpg" alt="rocks">
     <div class="themes">
-        <nav class="themes-navigate"> 
-            <a class="themes-labels" href="#">Nature</a> <a class="themes-labels" href="#">Photography</a> <a class="themes-labels" href="#">Relaxation</a> <a class="themes-labels" href="#">Vacation</a> <a class="themes-labels" href="#">Travel</a> <a class="themes-labels" href="#">Adventure</a> 
->>>>>>> Stashed changes
+        <nav class="themes__navigate"> 
+            <a class="themes__navigate-labels" href="#">Nature</a> <a class="themes__navigate-labels" href="#">Photography</a> <a class="themes__navigate-labels" href="#">Relaxation</a> <a class="themes__navigate-labels" href="#">Vacation</a> <a class="themes__navigate-labels" href="#">Travel</a> <a class="themes__navigate-labels" href="#">Adventure</a> 
         </nav>
     </div>
 
-    <article>
-        <h2>Featured Posts</h2>
-        <section> 
-            <a href="the-road-ahead.html"><img src="Sources/Post-Pictures/the-road-ahead-background.jpg" alt="northern lights"></a>
-            <h3>The Road Ahead</h3>
-            <p>The Road ahead might be proved - it might not be.</p>
-            <img src="Sources/Authors/Mat-Vogles.svg" alt="Mat-Vogles"><span>Mat Vogles</span> <span>September 25, 2015</span>
-
-        </section> 
-        <section> 
-
-            <a href="From-Top-Down.html"><img src="Sources/Post-Pictures/from-top-down-background.jpg" alt="Little balloon"></a>
-            <h3>From Top Down</h3>
-            <p>Once a year, go someplace you'vee never been before</p>
-            <img src="Sources/Authors/William-Wong.svg" alt="William-Wong.svg"><span>William Wong</span> <span>September 25, 2015</span>
-
-        </section>       
+    <article class="featured">
+        <h2 class="featured__head">Featured Posts</h2>
+        <img class="rectangle" src="Sources/Post-Pictures/Rectangle.png" alt="серая полосочка">
+        <div class="featured__post_grid">
+            <section> 
+                <a class="post__link" href="the-road-ahead.html">
+                     <div class="post__link__block post-id1">
+                         <h3 class="post__link-tagline">The Road Ahead</h3>
+                         <p class="post__link-text">The Road ahead might be proved - it might not be.</p>
+                         <div class="post__link-info">
+                             <img class="post__link-author-img" src="Sources/Authors/Mat-Vogles.svg" alt="Mat-Vogles">
+                             <span class="post__link-author-name">Mat Vogles</span> 
+                             <span class="post__link-date">September 25, 2015</span>
+                         </div>
+                     </div>     
+                 </a>
+             </section> 
+             <section> 
+                 <a class="post__link" href="From-Top-Down.html">
+                     <div class="post__link__block post-id2">
+                         <h3 class="post__link-tagline">From Top Down</h3>
+                         <p class="post__link-text">Once a year, go someplace you'vee never been before</p>
+                         <div class="post__link-info">
+                             <img class="post__link-author-img" src="Sources/Authors/William-Wong.svg" alt="William-Wong.svg">
+                             <span class="post__link-author-name">William Wong</span> 
+                             <span class="post__link-date">September 25, 2015</span>
+                         </div>
+                     </div>
+                 </a>
+             </section> 
+        </div>     
     </article>   
-    <article> 
-        <h2>Most Recent</h2>
-        <section>
-
-            <a href="Still-Standing-Tall.html"><img src="Sources/Post-Pictures/still-standing-tall-background.jpg" alt="Balloons"></a>
-            <h3>Still Standing Tall</h3>
-            <p>Life begins at the end of your comfort zone.</p>
-            <img src="Sources/Authors/William-Wong.svg" alt="William-Wong.svg"><span>William Wong</span> <span>September 25, 2015</span>
-
-        </section>  
-        <section>
-
-            <a href="Sunny-Side-Up.html"><img src="Sources/Post-Pictures/sunny-side-up-background.jpg" alt="Golden gate"></a>
-            <h3>Sunny Side Up</h3>
-            <p>No place is ever as bad as the tell you it's going to be</p>
-            <img src="Sources/Authors/Mat-Vogles.svg" alt="Mat-Vogles"><span>Mat Vogles</span> <span>September 25, 2015</span>
-
-        </section>  
-        <section>
-
-            <a href="Water-Falls.html"><img src="Sources/Post-Pictures/water-falls-background.jpg" alt="Lake"></a>
-            <h3>Water Falls</h3>
-            <p>We travel not to escape life, but for life not to escape us.</p>
-            <img src="Sources/Authors/Mat-Vogles.svg" alt="Mat-Vogles"><span>Mat Vogles</span> <span>September 25, 2015</span>
-
-        </section>
-        <section>
-            <a href="Through-the-Mist.html"><img src="Sources/Post-Pictures/trough-the-mist-background.jpg" alt="Waves"></a>
-            <h3>Through the Mist</h3>
-            <p>Travel makes you see what a tiny place you occupy in the world.</p>
-            <img src="Sources/Authors/William-Wong.svg" alt="William-Wong.svg"><span>William Wong</span> <span>September 25, 2015</span>
-        </section>
-        <section>
-            <a href="Awaken-Early.html"><img src="Sources/Post-Pictures/awaken-early-background.jpg" alt="Cable car in the fog"></a>
-            <h3>Awaken Early</h3>
-            <p>Not all those who wander are lost.</p>
-            <img src="Sources/Authors/Mat-Vogles.svg" alt="Mat-Vogles"><span>Mat Vogles</span> <span>September 25, 2015</span>
-        </section>
-        <section>
-            <a href="Try-it-Always"><img src="Sources/Post-Pictures/try-it-always-background.jpg" alt="Water fall with rainbowkm                                                                                                                                                                                                                   "></a>
-            <h3>Try it Always</h3>
-            <p>The world is a book, and those who do not travel read only one page.</p>
-            <img src="Sources/Authors/Mat-Vogles.svg" alt="Mat-Vogles"><span>Mat Vogles</span> <span>September 25, 2015</span>
-        </section>     
+    <article class="most_recent"> 
+        <h2 class="most_recent__head">Most Recent</h2>
+        <img class="rectangle" src="Sources/Post-Pictures/Rectangle.png" alt="серая полосочка">
+        <div class="most_recent__post_grid">
+            <section class="recent__post">
+                <div class="post_picture-id1"></div>
+                <h3 class="recent_post__link-tagline">Still Standing Tall</h3>
+                <p class="recent_post__link-text">Life begins at the end of your comfort zone.</p>
+                <img src="Sources/Post-Pictures/Rectangle-for-post.png" alt="серая полосочка">
+                <div class="recent_post__link-info">
+                    <img class="post__link-author-img" src="Sources/Authors/William-Wong.svg" alt="William-Wong.svg">
+                    <span class="recent_post__link-author-name">William Wong</span>
+                    <span class="recent_post__link-date">9/25/2015</span>
+                </div>
+            
+            </section>  
+            <section class="recent__post">
+                <div class="post_picture-id2"></div>
+                <h3 class="recent_post__link-tagline">Sunny Side Up</h3>
+                <p class="recent_post__link-text">No place is ever as bad as the tell you it's going to be</p>
+                <img src="Sources/Post-Pictures/Rectangle-for-post.png" alt="серая полосочка">
+                <div class="recent_post__link-info">
+                    <img class="post__link-author-img" src="Sources/Authors/Mat-Vogles.svg" alt="Mat-Vogles">
+                    <span class="recent_post__link-author-name">Mat Vogles</span> 
+                    <span class="recent_post__link-date">9/25/2015</span>
+                </div>
+            </section>  
+            <section class="recent__post">
+                <div class="post_picture-id3"></div>
+                <h3 class="recent_post__link-tagline">Water Falls</h3>
+                <p class="recent_post__link-text">We travel not to escape life, but for life not to escape us.</p>
+                <img src="Sources/Post-Pictures/Rectangle-for-post.png" alt="серая полосочка">
+                <div class="recent_post__link-info">
+                    <img class="post__link-author-img" src="Sources/Authors/Mat-Vogles.svg" alt="Mat-Vogles">
+                    <span class="recent_post__link-author-name">Mat Vogles</span> 
+                    <span class="recent_post__link-date">9/25/2015</span>
+                </div>
+            </section>
+            <section class="recent__post">
+                <div class="post_picture-id4"></div>
+                <h3 class="recent_post__link-tagline">Through the Mist</h3>
+                <p class="recent_post__link-text">Travel makes you see what a tiny place you occupy in the world.</p>
+                <img src="Sources/Post-Pictures/Rectangle-for-post.png" alt="серая полосочка">
+                <div class="recent_post__link-info">
+                    <img class="post__link-author-img" src="Sources/Authors/William-Wong.svg" alt="William-Wong.svg">
+                    <span class="recent_post__link-author-name">William Wong</span>
+                    <span class="recent_post__link-date">9/25/2015</span>
+                </div>        
+            </section>  
+            <section class="recent__post">
+                <div class="post_picture-id5"></div>
+                <h3 class="recent_post__link-tagline">Awaken Early</h3>
+                <p class="recent_post__link-text">Not all those who wander are lost.</p>
+                <img src="Sources/Post-Pictures/Rectangle-for-post.png" alt="серая полосочка">
+                <div class="recent_post__link-info">
+                    <img class="post__link-author-img" src="Sources/Authors/Mat-Vogles.svg" alt="Mat-Vogles">
+                    <span class="recent_post__link-author-name">Mat Vogles</span> 
+                    <span class="recent_post__link-date">9/25/2015</span>
+                </div>
+            </section>
+            <section class="recent__post">
+                <div class="post_picture-id6"></div>
+                <h3 class="recent_post__link-tagline">Try it Always</h3>
+                <p class="recent_post__link-text">The world is a book, and those who do not travel read only one page.</p>
+                <img src="Sources/Post-Pictures/Rectangle-for-post.png" alt="серая полосочка">
+                <div class="recent_post__link-info">
+                    <img class="post__link-author-img" src="Sources/Authors/Mat-Vogles.svg" alt="Mat-Vogles">
+                    <span class="recent_post__link-author-name">Mat Vogles</span> 
+                    <span class="recent_post__link-date">9/25/2015</span>
+                </div>        
+            </section>     
+        </div>
     </article> 
-    <footer>
-        <span>Escape.</span>
-        <nav>
-            <a href="#"><span>HOME</span></a> <a href="#"><span>CATEGORIES</span></a> <a href="#"><span>ABOUT</span></a> <a href="#"><span>CONTACT</span></a>
-        </nav>
-        <img src="Sources/Post-Pictures/footer-background.jpg" alt="fog">
+    <footer class="footer">
+        <div class="footer-shade">
+            <div class="footer__line">
+                <h1 class="footer__logo">Escape.</h1>
+                <nav class="footer__nav_bar">
+                    <a class="nav_bar_labels" href="#"><span>HOME</span></a> <a class="nav_bar_labels" href="#"><span>CATEGORIES</span></a> <a class="nav_bar_labels" href="#"><span>ABOUT</span></a> <a class="nav_bar_labels" href="#"><span>CONTACT</span></a>
+                </nav> 
+            </div>  
+        </div>
     </footer>   
 </body>
 </html>
