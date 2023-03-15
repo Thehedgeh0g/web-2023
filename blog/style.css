@@ -1,137 +1,112 @@
-.main{
+.main {
     margin: 0px;
     background-color: #F7F7F7;
 }
 
-
-.top__block{
-    background-image: url(Sources/Post-Pictures/Header-background.jpg);
+.top__block {
+    background-image: url('Sources/Post-Pictures/Header-background.jpg');
     background-color: #DD783F;
     background-size: cover;
     top: 0px;
-    
-    padding-bottom: 157px;
 }
 
-.header{
-    padding-top: 3px;
-    padding-bottom: 14px;
+.header {
+    padding-top: 20px;
     display: inline-block;
-    width: 75%;
-    padding-left: 12%;
+    height: 40px;
+    width: 65%;
+    padding-left: 17.3%;
 }
 
-.header__line{
+.header__line {
+    height: 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.header__logo-posts{
-    font-family: "Lora";
+.text_dark {
     color: black;
-    font-size: 26px;
-    font-weight: 400;
 }
 
-.header__logo{
-    font-family: "Lora";
+.text_ligth 
+ {
     color: white;
+}
+
+.header__logo {
+    margin: o;
+    font-family: "Lora";
     font-size: 26px;
     font-weight: 400;
 }
 
-.header__nav_bar{
+.header__nav-bar {
+    display: inline-flex;
+    justify-content: space-between;
+    padding-right: 0;
     font-size: 15px;
-    width: 350px;
+    width: 376px;
     text-transform: uppercase;
 }
 
-.nav_bar_labels-posts{
-    font-family: 'Oxygen';
-    font-style: normal;
-    line-height: 20px;
-    font-weight: 400;
-    color: black;
-    text-decoration: none;
-    margin: 0 3%;
-
-    transition: color .2s linear;
-}
-
-.nav_bar_labels{
-    font-family: 'Oxygen';
-    font-style: normal;
-    line-height: 20px;
-    font-weight: 400;
-    color: white;
+.nav-bar__labels {
+    font: 400 12px/1 'Oxygen';
     text-decoration: none;
     margin: 0 2%;
-
     transition: color .2s linear;
 }
 
-.nav_bar_labels:hover{
+.nav-bar__labels:hover {
     color: #e0aa8b
 }
 
-.tagline{
+.tagline {
     display: block;
-    padding-top: 177px;
+    padding-top: 120px;
+    padding-bottom: 157px;
+    max-height: 159px;
+    height: 100%;
 }
 
-.tagline__posts{
+.tagline__text_dark {
     display: block;
     padding-top: 82px;
     margin:0px;
+    padding-top: 109px;
 }
 
 .tagline__header {
     margin: 0;
-    font-family: 'Lora', serif;
-    font-style: normal;
-    color: white;
-    font-size: 50px;
-    font-weight: 400;
+    font: 400 50px/1 'Lora';
     text-align: center;
     letter-spacing: 2px;
 } 
 
 .tagline__text {
-    margin: 0;
-    padding-top: 20px;
-    font-family: 'Oxygen';
-    font-weight: 400;
-    text-align: center;
-    size: 18px;
-    line-height: 20px;
     color: rgba(255, 255, 255, 0.63);
-}
-
-.tagline__text-posts {
-    font-family: 'Lora';
+    padding-top: 20px;
+    height: 20px;
+    margin: 0;
+    font: 400 17px/1 'Oxygen';
     text-align: center;
-    font-weight: 400px;
-    size: 18px;
     line-height: 20px;
-    color: black;
-    padding-bottom: 113px;
 }
 
-.tagline__post-pictures{
+.tagline__post-pictures {
     width: 100%;
     height: 534px;
+    padding-top: 113px;
 }
 
-.tagline__button{
+.tagline__button {
     background-color: #DD783F;
     margin-top: 31px;
     border: none;
     border-radius: 3px;
     text-align: center;
     color:white;
-    font-size: 13px;
-    font-family: 'Oxygen', sans-serif;
+    font: 400 13px/1 'Oxygen', sans-serif;
     width: 167px;
     height: 44px;
     display: block;
@@ -140,7 +115,7 @@
     cursor: pointer;
 }
 
-.themes{
+.themes {
     padding-top: 20px;
     padding-left: 10%; 
     padding-right: 10%; 
@@ -148,13 +123,13 @@
     background-color: #ffffff;
 }
 
-.themes__navigate{
+.themes__navigate {
     display: flex;
     justify-content: space-around;
     align-items: center;
 }
 
-.themes__navigate-labels{
+.themes__navigate-labels {
     font-family: 'Lora';
     font-style: normal;
     line-height: 20px;
@@ -165,166 +140,123 @@
     transition: color .2s linear;
 }
 
-.themes__navigate-labels:hover{
+.themes__navigate-labels:hover {
     color: #000000
 }
 
 
-.featured{
+.featured {
     width: 940px;
     padding-left: calc(50% - 940px/2)
 }
 
-.rectangle{
+.rectangle {
     padding-left: 376px;
     padding-top: 16px;
     padding-bottom: 23px;
 }
 
-.featured__head{
+.featured__head {
     margin: 0;
     width: 940px;
-    font-family: 'Oxygen';
-    font-weight: 400;
-    font-size: 20px;
+    font: 400 20px/1 'Oxygen';    
     line-height: 27px;
     letter-spacing: 2px;
     text-align: center;
 }
 
-.featured__post_grid{
+.featured__post_grid {
     display: grid;
     grid-template-columns: 460px 460px;
     grid-column-gap: 20px;
 }
 
-.themes-labels:hover{
+.themes-labels:hover {
     color: #000000
 }
 
-.post__link{
+.post_link {
     text-decoration: none;
     color: white;
     margin: 0;
 }
 
-.post-id1{
-    background-image: url(Sources/Post-Pictures/the-road-ahead-background.jpg);
-    background-size: cover;
+.featured__post_background {
+    position: absolute;
+    z-index: -1;
 }
 
-.post-id2{
-    background-image: url(Sources/Post-Pictures/from-top-down-background.jpg);
-    background-size: cover;
-}
-
-.recent__post{
+.recent-post {
     height: 291px;
     width: 296px;
 }
 
-.post__link__block{
+.post_link__block {
     width: 460px;
     height: 280px;
 }
-.most_recent{
+.most_recent {
     width: 940px;
     padding-left: calc(50% - 940px/2);
 }
 
-.most_recent__head{
+.most_recent__head {
     width: 940px;
     margin: 0;
     padding-top: 67px;
     text-align: center;
-    font-family: 'Oxygen';
-    font-weight: 400;
-    font-size: 20px;
+    font: 400 20px/1 'Oxygen';
     line-height: 27px;
     letter-spacing: 2px;
 }
 
 
-.most_recent__post_grid{
-    
+.most_recent-post_grid {    
     display: grid;
     grid-template-columns: 296px 296px 296px;
     gap: 24px;
     row-gap: 25px;
     padding-bottom: 89px;
 }
-.recent__post{
+.recent-post {
     background-color: #ffffff;
 }
 
-.post_picture-id1{
+.recent-post__picture {
+    display: block;
     width: 296px;
     height: 150px;
-    background-image: url(Sources/Post-Pictures/still-standing-tall-background.jpg);
-    background-size: cover;
 }
 
-.post_picture-id2{
-    width: 296px;
-    height: 150px;
-    background-image: url(Sources/Post-Pictures/sunny-side-up-background.jpg);
-    background-size: cover;
-}
-
-.post_picture-id3{
-    width: 296px;
-    height: 150px;
-    background-image: url(Sources/Post-Pictures/water-falls-background.jpg);
-    background-size: cover;
-}
-
-.post_picture-id4{
-    width: 296px;
-    height: 150px;
-    background-image: url(Sources/Post-Pictures/trough-the-mist-background.jpg);
-    background-size: cover;
-}
-
-.post_picture-id5{
-    width: 296px;
-    height: 150px;
-    background-image: url(Sources/Post-Pictures/awaken-early-background.jpg);
-    background-size: cover;
-}
-
-.post_picture-id6{
-    width: 296px;
-    height: 150px;
-    background-image: url(Sources/Post-Pictures/try-it-always-background.jpg);
-    background-size: cover;
-}
-
-.recent_post__link-tagline{
+.recent-post__link-tagline {
     margin: 0;
     padding-top: 14px;
-    font-family: 'Lora';
-    font-weight: 400;
-    font-size: 16px;
+    font: 400 16px/1 'Lora';
     line-height: 21px;
     padding-left: 13px;
 }
 
-.recent_post__link-text{
-    height: 38px;
+.recent-post__border-line {
+    display: block;
+    padding-top: 32px;
+    margin: 0;
+    padding-bottom: 0%;
+    height: 1px;
+    width: 296px;
+}
+
+.recent-post__link-text {
+    height: 19px;
     margin: 0;
     padding-top: 6px;
-    font-family: 'Oxygen';
-    font-weight: 400;
-    font-size: 13px;
+    font: 400 13px/1 'Oxygen';
     line-height: 19px;
     padding-left: 13px;
 }
 
-.recent_post__link-date{
+.recent-post__link-date {
     margin: 0;
-    font-family: 'Oxygen';
-    font-weight: 400;
-    font-size: 12px;
+    font: 400 12px/1 'Oxygen';
     text-decoration: none;   
     line-height: 35px; 
     padding-left: 100px;
@@ -332,59 +264,51 @@
     color: #999999;
 }
 
-.recent_post__link-author-name{
+.recent-post__link-author-name {
     width: 76px;
     padding-left: 10px;
     margin: 0;
-    font-family: 'Oxygen';
-    font-weight: 400;
+    font: 400 11px/1 'Oxygen';
     text-decoration: none;  
-    font-size: 11px; 
     line-height: 35px;
 }
 
-.recent_post__link-info{
-    padding-top: 6px;
-    padding-left: 13px;
-    width: 296px;
+.recent-post__link-info {
+    align-items: center;
+    padding-top: 0%;
+    padding-left: 15px;
+    width: 281px;
     height: 48px;
     margin-bottom: 0px;
     display: flex;
     align-items: center;
-    padding-bottom: 15px;
 }
 
-.post__link-text{
+.post_link-text {
     margin: 0;
     padding-top: 6px;
-    font-family: 'Oxygen';
-    font-weight: 400;
-    font-size: 14px;
+    font: 400 14px/1 'Oxygen';
     line-height: 25px;
     padding-left: 20px;
 }
 
-.post__link-tagline{
+.post_link-tagline {
     margin: 0;
     padding-top: 157px;
-    font-family: 'Lora';
-    font-weight: 400;
-    font-size: 27px;
+    font: 400 27px/1 'Lora';
     line-height: 30px;
     padding-left: 20px;
 }
 
-.post__link-text{
+.post_link-text {
     margin: 0;
     padding-top: 6px;
-    font-family: 'Oxygen';
-    font-weight: 400;
-    font-size: 14px;
+    font: 400 14px/1 'Oxygen';
     line-height: 25px;
     padding-left: 20px;
 }
 
-.post__link-info{
+.post_link-info {
     padding-top: 6px;
     padding-left: 20px;
     width: 420px;
@@ -395,7 +319,7 @@
     padding-bottom: 15px;
 }
 
-.post__link-date{
+.post_link-date {
     margin: 0;
     font-family: 'Oxygen';
     font-weight: 400;
@@ -405,7 +329,7 @@
     padding-left: 150px;
 }
 
-.post__link-author-name{
+.post_link-author-name {
     padding-left: 10px;
     margin: 0;
     font-family: 'Oxygen';
@@ -415,7 +339,7 @@
     line-height: 35px;
 }
 
-.post__link-date{
+.post_link-date {
     margin: 0;
     font-family: 'Oxygen';
     font-weight: 400;
@@ -425,7 +349,7 @@
     padding-left: 150px;
 }
 
-.post__link-author-name{
+.post_link-author-name {
     padding-left: 10px;
     margin: 0;
     font-family: 'Oxygen';
@@ -434,7 +358,7 @@
     line-height: 35px;
 }
 
-.post{
+.post {
     padding-top: 140px;
     margin-left: 14%;
     margin-right: 14%;
@@ -442,27 +366,83 @@
     width: 67%;
 }
 
-.post__text{
+.post__text {
    font-family: 'Oxygen'; 
    font-weight: 400;
    font-size: 24px;
    line-height: 35px;
 }
 
-.post__text-paragrph{
+.post__text-paragrph {
     margin-top: 24px;
 }
 
-.featured{
+.featured {
     padding-top: 60px;
 }
 
-.footer{
+.down-block {
     background-image: url(Sources/Post-Pictures/footer-background.jpg);
     background-size: cover;
+
 }
 
-.footer-shade{
+.feedback-block {
+    text-align: center;
+    padding-top: 81px;
+    padding-bottom: 90px;
+}
+
+.down-block__border-line {
+    display: block;
+    margin: 0;
+    margin-left: auto;
+    margin-right: auto;
+    height: 1px;
+    width: 188px;
+    padding-bottom: 20px;
+}
+
+.feedback-block__tagline {
+    font-family: 'Oxygen';
+    padding-bottom: 17px;
+    margin: 0;
+}
+
+.feedback-block__tool {
+    display: inline-flex;
+}
+
+.feedback-block__tool__input {
+    padding: 0;
+    border: none;
+    width: 365px;
+    height: 50px;
+    padding-left: 35px;
+    border-radius: 3px 0 0 3px;
+}
+
+.feedback-block__tool__input:active {
+    border: none;
+}
+
+.feedback-block__tool__button {
+    background-color: rgba(255, 255, 255, 0.28);
+    color: #F8F8F8;
+    padding: 0;
+    display: block;
+    border: none;
+    margin: 0%;
+    width: 125px;
+    height: 50px;
+    border-radius: 0 3px 3px 0;
+}
+
+.footer {
+    padding-bottom: 0;
+}
+
+.footer-shade {
     background-color:rgba(35, 47, 56, 0.6);
     padding-bottom: 3px;
     padding-left: 12%;
@@ -470,28 +450,21 @@
     top: 0px;
 }
 
-.footer__line{
+.footer__line {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.footer__logo{
-    font-family: "Lora";
-    color: black;
-    font-size: 26px;
-    font-weight: 400;
-}
-
-.footer__logo{
+.footer__logo {
     font-family: "Lora";
     color: white;
     font-size: 26px;
     font-weight: 400;
 }
 
-.footer__nav_bar{
+.footer__nav-bar {
     font-size: 15px;
     width: 350px;
-    text-transform: uppercase;  
+    text-transform: uppercase;
 }
