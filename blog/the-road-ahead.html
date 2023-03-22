@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="Sources/favicon.ico" type="image/x-icon">
     <title>Escape.</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,16 +17,16 @@
         <div class="header__line">
             <h1 class="header__logo text_dark">Escape.</h1>
             <nav class="header__nav-bar">   
-                <a class="nav-bar__labels text_dark" href="#"><span>HOME</span></a>
+                <a class="nav-bar__labels text_dark" href="index.html"><span>HOME</span></a>
                 <a class="nav-bar__labels text_dark" href="#"><span>CATEGORIES</span></a>
-                <a class="nav-bar__labels text_dark" href="#"><span>ABOUT</span></a> 
+                <a class="nav-bar__labels text_dark" href="#"><span>ABOUT</span></a>
                 <a class="nav-bar__labels text_dark" href="#"><span>CONTACT</span></a>
             </nav> 
         </div>
     </header>
-    <div class="tagline__text_dark">
+    <div class="tagline__block_dark">
         <h2 class="tagline__header text_dark">The Road Ahead</h2>
-        <p class="tagline__text text_dark">The Road ahead might be proved - it might not be.</p>
+        <p class="tagline__text_dark text_dark">The Road ahead might be proved - it might not be.</p>
         <img class="tagline__post-pictures" src="Sources/Post-Pictures/the-road-ahead-background.jpg" alt="northern lights">
     </div>
     <div class="post">
@@ -59,19 +60,28 @@
             </p>
         </div>
     </div>
-    <footer>
-        <img class="footer-background" src="Sources/Post-Pictures/footer-background.jpg" alt="little fog">
-        <div class="footer">
-            <div class="footer__line">
-                <h1 class="footer__logo">Escape.</h1>
-                <nav class="footer__nav-bar">
-                    <a class="nav-bar__labels text_ligth" href="#"><span>HOME</span></a> 
-                    <a class="nav-bar__labels text_ligth" href="#"><span>CATEGORIES</span></a> 
-                    <a class="nav-bar__labels text_ligth" href="#"><span>ABOUT</span></a> 
-                    <a class="nav-bar__labels text_ligth" href="#"><span>CONTACT</span></a>
-                </nav> 
-            </div>  
+    <div class="down-block">
+        <div class="feedback">
+            <h2 class="feedback__tagline text_ligth">Stay in Touch</h2>
+            <img class="down__border-line" src="Sources/Post-Pictures/Rectangle.png" alt="gray line">
+            <div class="feedback__tool">    
+                <input class="feedback__tool__input" type="email" id="email" placeholder="Enter your email address">
+                <button class="feedback__tool__button"> <span>Submit</span> </button>
+            </div>
         </div>
-    </footer>       
+        <footer class="footer">
+            <div class="footer-shade">
+                <div class="footer__line">
+                    <h1 class="footer__logo">Escape.</h1>
+                    <nav class="footer__nav-bar">
+                        <a class="footer__nav-bar__labels" href="#"><span>HOME</span></a> 
+                        <a class="footer__nav-bar__labels" href="#"><span>CATEGORIES</span></a> 
+                        <a class="footer__nav-bar__labels" href="#"><span>ABOUT</span></a> 
+                        <a class="footer__nav-bar__labels" href="#"><span>CONTACT</span></a>
+                    </nav> 
+                </div>  
+            </div>
+        </footer>  
+    </div>    
 </body>
 </html>
