@@ -4,13 +4,18 @@ import (
 	"html/template"
 	"log"
 	"net/http"
+
+	"github.com/jmoiron/sqlx"
 )
 
 type indexPage struct {
-	TopBlock  []topBlocks
-	Themes    []themesData
-	Container []containerBlocks
-	DownBlock []downBlocks
+	TopBlock           []topBlocks
+	Themes             []themesData
+	FeaturedPostsTitle string
+	FeaturedPosts      []featuredPostsBlock
+	RecentPostsTitle   string
+	RecentPosts        []recentPostsBlock
+	DownBlock          []downBlocks
 }
 
 type postPage struct {
@@ -52,98 +57,22 @@ type themesData struct {
 	Sixth  string
 }
 
-type containerBlocks struct {
-	FeaturedPosts []featuredPostsBlock
-	RecentPosts   []recentPostsBlock
-}
-
 type featuredPostsBlock struct {
-	Title        string
-	TheRoadAhead []theRoadAheadData
-	FromTopDown  []fromTopDownData
-}
-
-type theRoadAheadData struct {
-	Background  string
-	Title       string
-	Subtitle    string
-	AuthorImage string
-	AuthorName  string
-	Data        string
-}
-
-type fromTopDownData struct {
-	Background  string
-	Button      string
-	Title       string
-	Subtitle    string
-	AuthorImage string
-	AuthorName  string
-	Data        string
+	Title       string `db:"title"`
+	Subtitle    string `db:"subtitle"`
+	Author      string `db:"Author"`
+	AuthorImage string `db:"author_url"`
+	Date        string `db:"publish_date"`
+	Background  string `db:"image_url"`
 }
 
 type recentPostsBlock struct {
-	Title             string
-	StillStandingTall []stillStandingTallData
-	SunnySideUp       []sunnySideUpData
-	WaterFalls        []waterFallsData
-	ThroughTheMist    []throughTheMistData
-	AwakenEarly       []awakenEarlyData
-	TryItAlways       []tryItAlwaysData
-}
-
-type stillStandingTallData struct {
-	Background  string
-	Title       string
-	Subtitle    string
-	AuthorImage string
-	AuthorName  string
-	Data        string
-}
-
-type sunnySideUpData struct {
-	Background  string
-	Title       string
-	Subtitle    string
-	AuthorImage string
-	AuthorName  string
-	Data        string
-}
-
-type waterFallsData struct {
-	Background  string
-	Title       string
-	Subtitle    string
-	AuthorImage string
-	AuthorName  string
-	Data        string
-}
-
-type throughTheMistData struct {
-	Background  string
-	Title       string
-	Subtitle    string
-	AuthorImage string
-	AuthorName  string
-	Data        string
-}
-
-type awakenEarlyData struct {
-	Background  string
-	Title       string
-	Subtitle    string
-	AuthorImage string
-	AuthorName  string
-	Data        string
-}
-
-type tryItAlwaysData struct {
-	Background  string
-	Title       string
-	Subtitle    string
-	AuthorImage string
-	AuthorName  string
-	Data        string
+	Title       string `db:"title"`
+	Subtitle    string `db:"subtitle"`
+	Author      string `db:"Author"`
+	AuthorImage string `db:"author_url"`
+	Date        string `db:"publish_date"`
+	Background  string `db:"image_url"`
 }
 
 type downBlocks struct {
@@ -182,26 +111,45 @@ type postData struct {
 	ParFourth string
 }
 
-func index(w http.ResponseWriter, r *http.Request) {
-	ts, err := template.ParseFiles("pages/index.html") // Главная страница блога
-	if err != nil {
-		http.Error(w, "Internal Server Error", 500) // В случае ошибки парсинга - возвращаем 500
-		log.Println(err.Error())                    // Используем стандартный логгер для вывода ошбики в консоль
-		return                                      // Не забываем завершить выполнение ф-ии
-	}
+func index(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
+	return func(w http.ResponseWriter, r *http.Request) {
+		FeaturedPosts, err := FeaturedPosts(db)
+		if err != nil {
+			http.Error(w, "Error", 500)
+			log.Println(err)
+			return
+		}
 
-	Data := indexPage{
-		TopBlock:  TopBlock(),
-		Themes:    Themes(),
-		Container: Container(),
-		DownBlock: DownBlock(),
-	}
+		RecentPosts, err := RecentPosts(db)
+		if err != nil {
+			http.Error(w, "Error", 500)
+			log.Println(err)
+			return
+		}
 
-	err = ts.Execute(w, Data) // Заставляем шаблонизатор вывести шаблон в тело ответа
-	if err != nil {
-		http.Error(w, "Internal Server Error", 500)
-		log.Println(err.Error())
-		return
+		ts, err := template.ParseFiles("pages/index.html")
+		if err != nil {
+			http.Error(w, "Internal Server Error", 500)
+			log.Println(err.Error())
+			return
+		}
+
+		data := indexPage{
+			TopBlock:           TopBlock(),
+			Themes:             Themes(),
+			FeaturedPostsTitle: "Featured Posts",
+			FeaturedPosts:      FeaturedPosts,
+			RecentPosts:        RecentPosts,
+			RecentPostsTitle:   "Most Recent",
+			DownBlock:          DownBlock(),
+		}
+
+		err = ts.Execute(w, data)
+		if err != nil {
+			http.Error(w, "Server Error", 500)
+			log.Println(err.Error())
+			return
+		}
 	}
 }
 
@@ -280,142 +228,52 @@ func Themes() []themesData {
 	}
 }
 
-func Container() []containerBlocks {
-	return []containerBlocks{
-		{
-			FeaturedPosts: FeaturedPosts(),
-			RecentPosts:   RecentPosts(),
-		},
+func FeaturedPosts(db *sqlx.DB) ([]featuredPostsBlock, error) {
+	const query = `
+		SELECT
+			title,
+			subtitle,
+			Author,
+			author_url,
+			publish_date,
+			image_url
+		FROM
+			post
+		WHERE featured = 1
+	`
+
+	var featuredposts []featuredPostsBlock
+
+	err := db.Select(&featuredposts, query)
+	if err != nil {
+		return nil, err
 	}
+
+	return featuredposts, nil
 }
 
-func FeaturedPosts() []featuredPostsBlock {
-	return []featuredPostsBlock{
-		{
-			Title:        "Featured Posts",
-			TheRoadAhead: TheRoadAhead(),
-			FromTopDown:  FromTopDown(),
-		},
-	}
-}
+func RecentPosts(db *sqlx.DB) ([]recentPostsBlock, error) {
+	const query = `
+		SELECT
+			title,
+			subtitle,
+			Author,
+			author_url,
+			publish_date,
+			image_url
+		FROM
+			post
+		WHERE featured = 0
+	`
 
-func TheRoadAhead() []theRoadAheadData {
-	return []theRoadAheadData{
-		{
-			Background:  "../static/Sources/the-road-ahead-background.jpg",
-			Title:       "The Road Ahead",
-			Subtitle:    "The road ahead might be paved - it might not be.",
-			AuthorImage: "../static/Sources/Mat-Vogles.svg",
-			AuthorName:  "Mat Vogels",
-			Data:        "September 25, 201",
-		},
-	}
-}
+	var mostrecent []recentPostsBlock
 
-func FromTopDown() []fromTopDownData {
-	return []fromTopDownData{
-		{
-			Background:  "../static/Sources/from-top-down-background.jpg",
-			Button:      "ADVENTURE",
-			Title:       "From Top Down",
-			Subtitle:    "Once a year, go someplace you've never been before.",
-			AuthorImage: "../static/Sources/William-Wong.svg",
-			AuthorName:  "William Wong",
-			Data:        "September 25, 2015",
-		},
+	err := db.Select(&mostrecent, query)
+	if err != nil {
+		return nil, err
 	}
-}
 
-func RecentPosts() []recentPostsBlock {
-	return []recentPostsBlock{
-		{
-			Title:             "Most Recent",
-			StillStandingTall: stillStandingTall(),
-			SunnySideUp:       SunnySideUp(),
-			WaterFalls:        WaterFalls(),
-			ThroughTheMist:    ThroughTheMist(),
-			AwakenEarly:       AwakenEarly(),
-			TryItAlways:       TryItAlways(),
-		},
-	}
-}
-
-func stillStandingTall() []stillStandingTallData {
-	return []stillStandingTallData{
-		{
-			Background:  "../static/Sources/still-standing-tall-background.jpg",
-			Title:       "Still Standing Tall",
-			Subtitle:    "Life begins at the end of your comfort zone.",
-			AuthorImage: "../static/Sources/William-Wong.svg",
-			AuthorName:  "William Wong",
-			Data:        "9/25/2015",
-		},
-	}
-}
-
-func SunnySideUp() []sunnySideUpData {
-	return []sunnySideUpData{
-		{
-			Background:  "../static/Sources/sunny-side-up-background.jpg",
-			Title:       "Sunny Side Up",
-			Subtitle:    "No place is ever as bad as they tell you it's going to be.",
-			AuthorImage: "../static/Sources/Mat-Vogles.svg",
-			AuthorName:  "Mat Vogels",
-			Data:        "9/25/2015",
-		},
-	}
-}
-
-func WaterFalls() []waterFallsData {
-	return []waterFallsData{
-		{
-			Background:  "../static/Sources/water-falls-background.jpg",
-			Title:       "Water Falls",
-			Subtitle:    "We travel not to Escape life, but for life not to Escape us.",
-			AuthorImage: "../static/Sources/Mat-Vogles.svg",
-			AuthorName:  "Mat Vogels",
-			Data:        "9/25/2015",
-		},
-	}
-}
-
-func ThroughTheMist() []throughTheMistData {
-	return []throughTheMistData{
-		{
-			Background:  "../static/Sources/trough-the-mist-background.jpg",
-			Title:       "Through the Mist",
-			Subtitle:    "Travel makes you see what a tiny place you occupy in the world.",
-			AuthorImage: "../static/Sources/William-Wong.svg",
-			AuthorName:  "William Wong",
-			Data:        "9/25/2015",
-		},
-	}
-}
-
-func AwakenEarly() []awakenEarlyData {
-	return []awakenEarlyData{
-		{
-			Background:  "../static/Sources/awaken-early-background.jpg",
-			Title:       "Awaken Early",
-			Subtitle:    "Not all those who wander are lost.",
-			AuthorImage: "../static/Sources/Mat-Vogles.svg",
-			AuthorName:  "Mat Vogels",
-			Data:        "9/25/2015",
-		},
-	}
-}
-
-func TryItAlways() []tryItAlwaysData {
-	return []tryItAlwaysData{
-		{
-			Background:  "../static/Sources/try-it-always-background.jpg",
-			Title:       "Try it Always",
-			Subtitle:    "The world is a book, and those who do not travel read only One page.",
-			AuthorImage: "../static/Sources/Mat-Vogles.svg",
-			AuthorName:  "Mat Vogels",
-			Data:        "9/25/2015",
-		},
-	}
+	return mostrecent, nil
 }
 
 func DownBlock() []downBlocks {

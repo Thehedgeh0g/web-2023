@@ -50,136 +50,47 @@
                 </nav>   
             </div>
         {{ end }}
-        {{ range .Container }} 
-            <div class="container">
-                {{ range .FeaturedPosts }}  
-                    <article class="featured">    
-                        <h2 class="featured__head">{{ .Title }}</h2>
-                        <div class="featured__post_grid">
-                            {{ range .TheRoadAhead }}
-                                <section>     
-                                    <a class="featured__post_link" href="post">
-                                        <div class="featured__post_link__block">
-                                            <img class="featured__post__background" src="{{ .Background }}" alt="North Shine">
-                                            <div class="featured__post_link__theme"><span class="featured__post_link__theme__label">Adventure</span></div>
-                                            <h3 class="featured__post_link__tagline">{{ .Title }}</h3>
-                                            <p class="featured__post_link__text">{{ .Subtitle }}</p>
-                                            <div class="featured__post_link__info">
-                                                <img class="post__link-Author-img" src="{{ .AuthorImage }}" alt="Mat-Vogles">
-                                                <span class="featured__post_link-Author-name">{{ .AuthorName }}</span> 
-                                                <span class="featured__post_link-date">{{ .Data }}</span>
-                                            </div>
-                                        </div>     
-                                    </a>     
-                                </section>
-                            {{ end }}
-                            {{ range .FromTopDown }} 
-                                <section>    
-                                    <a class="featured__post_link" href="From-Top-Down.html">
-                                        <div class="featured__post_link__block">
-                                            <img class="featured__post__background" src="{{ .Background }}"  alt="small baloons">
-                                            <div class="featured__post_link__theme"><span class="featured__post_link__theme__label">Adventure</span></div>
-                                            <h3 class="featured__post_link__tagline">{{ .Title }}</h3>
-                                            <p class="featured__post_link__text">{{ .Subtitle }}</p>
-                                            <div class="featured__post_link__info">
-                                                <img class="post__link-Author-img" src="{{ .AuthorImage }}"  alt="William-Wong.svg">
-                                                <span class="featured__post_link-Author-name">{{ .AuthorName }}</span> 
-                                                <span class="featured__post_link-date">{{ .Data }}</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </section> 
-                            {{ end }} 
-                        </div>         
-                    </article>
-                {{ end }}
-                {{ range .RecentPosts }}   
-                    <article class="most_recent">      
-                        <h2 class="most_recent__head">{{ .Title }}</h2>
-                        <div class="most_recent-post_grid">
-                            {{ range .StillStandingTall }}    
-                                <section class="recent-post">
-                                    <img class="recent-post__picture" src="{{ .Background }}" alt="air baloons">
-                                    <h3 class="recent-post__link-tagline">{{ .Title }}</h3>
-                                    <p class="recent-post__link-text">{{ .Subtitle }}</p>
-                                    <img class="recent-post__border-line" src="../static/Sources/Rectangle-for-post.png" alt="gray line">
-                                    <div class="recent-post__link-info">
-                                        <img class="post__link-Author-img" src="{{ .AuthorImage }}" alt="William-Wong.svg">
-                                        <span class="recent-post__link-Author-name">{{ .AuthorName }}</span>
-                                        <span class="recent-post__link-date">{{ .Data }}</span>
-                                    </div>  
-                                </section>
-                            {{ end }}
-                            {{ range .SunnySideUp }}      
-                                <section class="recent-post">
-                                    <img class="recent-post__picture" src="{{ .Background }}" alt="'Golden Gate' bridge">                
-                                    <h3 class="recent-post__link-tagline">{{ .Title }}</h3>
-                                    <p class="recent-post__link-text">{{ .Subtitle }}</p>
-                                    <img class="recent-post__border-line" src="../static/Sources/Rectangle-for-post.png" alt="gray line">
-                                    <div class="recent-post__link-info">
+        <div class="container">
+            <article class="featured">    
+                <h2 class="featured__head">{{ .FeaturedPostsTitle }}</h2>
+                <div class="featured__post_grid">
+                    {{ range .FeaturedPosts }}  
+                        <section>     
+                            <a class="featured__post_link" href="post">
+                                <div class="featured__post_link__block">
+                                    <img class="featured__post__background" src="{{ .Background }}" alt="Post picture">
+                                    <div class="featured__post_link__theme"><span class="featured__post_link__theme__label">Adventure</span></div>
+                                    <h3 class="featured__post_link__tagline">{{ .Title }}</h3>
+                                    <p class="featured__post_link__text">{{ .Subtitle }}</p>
+                                    <div class="featured__post_link__info">
                                         <img class="post__link-Author-img" src="{{ .AuthorImage }}" alt="Mat-Vogles">
-                                        <span class="recent-post__link-Author-name">{{ .AuthorName }}</span>
-                                        <span class="recent-post__link-date">{{ .Data }}</span>
+                                        <span class="featured__post_link-Author-name">{{ .Author }}</span> 
+                                        <span class="featured__post_link-date">{{ .Date }}</span>
                                     </div>
-                                </section>
-                            {{ end }}
-                            {{ range .WaterFalls }}      
-                                <section class="recent-post">
-                                    <img class="recent-post__picture" src="{{ .Background }}" alt="Sunset lake">                
-                                    <h3 class="recent-post__link-tagline">{{ .Title }}</h3>
-                                    <p class="recent-post__link-text">{{ .Subtitle }}</p>
-                                    <img class="recent-post__border-line" src="../static/Sources/Rectangle-for-post.png" alt="gray line">
-                                    <div class="recent-post__link-info">
-                                        <img class="post__link-Author-img" src="{{ .AuthorImage }}" alt="Mat-Vogles">
-                                        <span class="recent-post__link-Author-name">{{ .AuthorName }}</span>
-                                        <span class="recent-post__link-date">{{ .Data }}</span>
-                                    </div>
-                                </section>    
-                            {{ end }}
-                            {{ range .ThroughTheMist }}
-                                <section class="recent-post">
-                                    <img class="recent-post__picture" src="{{ .Background }}" alt="Sea Waves">                
-                                    <h3 class="recent-post__link-tagline">{{ .Title }}</h3>
-                                    <p class="recent-post__link-text">{{ .Subtitle }}</p>
-                                    <img class="recent-post__border-line" src="../static/Sources/Rectangle-for-post.png" alt="gray line">
-                                    <div class="recent-post__link-info">
-                                        <img class="post__link-Author-img" src="{{ .AuthorImage }}" alt="William-Wong.svg">
-                                        <span class="recent-post__link-Author-name">{{ .AuthorName }}</span>
-                                        <span class="recent-post__link-date">{{ .Data }}</span>
-                                    </div>        
-                                </section>     
-                            {{ end }}
-                            {{ range .AwakenEarly }}   
-                                <section class="recent-post">
-                                    <img class="recent-post__picture" src="{{ .Background }}" alt="fog">                
-                                    <h3 class="recent-post__link-tagline">{{ .Title }}</h3>
-                                    <p class="recent-post__link-text">{{ .Subtitle }}</p>
-                                    <img class="recent-post__border-line" src="../static/Sources/Rectangle-for-post.png" alt="gray line">
-                                    <div class="recent-post__link-info">
-                                        <img class="post__link-Author-img" src="{{ .AuthorImage }}" alt="Mat-Vogles">
-                                        <span class="recent-post__link-Author-name">{{ .AuthorName }}</span>
-                                        <span class="recent-post__link-date">{{ .Data }}</span>
-                                    </div>
-                                </section>    
-                            {{ end }}
-                            {{ range .TryItAlways }}
-                                <section class="recent-post">
-                                    <img class="recent-post__picture" src="{{ .Background }}" alt="water falls">                
-                                    <h3 class="recent-post__link-tagline">{{ .Title }}</h3>
-                                    <p class="recent-post__link-text">{{ .Subtitle }}</p>
-                                    <img class="recent-post__border-line" src="../static/Sources/Rectangle-for-post.png" alt="gray line">
-                                    <div class="recent-post__link-info">
-                                        <img class="post__link-Author-img" src="{{ .AuthorImage }}" alt="Mat-Vogles">
-                                        <span class="recent-post__link-Author-name">{{ .AuthorName }}</span>
-                                        <span class="recent-post__link-date">{{ .Data }}</span>
-                                    </div>        
-                                </section>     
-                            {{ end }}
-                        </div>    
-                    </article>
-                {{ end }}      
-            </div>
-        {{ end }}    
+                                </div>     
+                            </a>     
+                        </section>
+                    {{ end }}
+                </div>         
+            </article>
+            <article class="most_recent">      
+                <h2 class="most_recent__head">{{ .RecentPostsTitle }}</h2>
+                <div class="most_recent-post_grid">
+                    {{ range .RecentPosts  }}    
+                        <section class="recent-post">
+                            <img class="recent-post__picture" src="{{ .Background }}" alt="post picture">
+                            <h3 class="recent-post__link-tagline">{{ .Title }}</h3>
+                            <p class="recent-post__link-text">{{ .Subtitle }}</p>
+                            <img class="recent-post__border-line" src="../static/Sources/Rectangle-for-post.png" alt="gray line">
+                            <div class="recent-post__link-info">
+                                <img class="post__link-Author-img" src="{{ .AuthorImage }}" alt="William-Wong.svg">
+                                <span class="recent-post__link-Author-name">{{ .Author }}</span>
+                                <span class="recent-post__link-date">{{ .Date }}</span>
+                            </div>  
+                        </section>
+                    {{ end }}  
+            </article>     
+        </div>
         {{ range .DownBlock }}
             <div class="down-block">
                 {{ range .Feedback }}   
