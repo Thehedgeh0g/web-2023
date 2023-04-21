@@ -13,7 +13,7 @@
     </head>
     <body class="main">
         {{ range .TopBlock }}    
-            <div class="top__block"> 
+            <div class="top-block"> 
             {{ range .Header }}   
                 <header class="header">
                     <div class="header__line">
@@ -56,7 +56,7 @@
                 <div class="featured__post_grid">
                     {{ range .FeaturedPosts }}  
                         <section class="featured_post">     
-                            <a class="featured__post_link" href="post">
+                            <a class="featured__post_link" href="{{ .PostURL }}">
                                 <div class="featured__post_link__block">
                                     <img class="featured__post__background" src="{{ .Background }}" alt="Post picture">
                                     <div class="featured__post_link__theme"><span class="featured__post_link__theme__label {{ .Theme }}">{{ .Theme }}</span></div>
@@ -78,16 +78,18 @@
                 <div class="most_recent-post_grid">
                     {{ range .RecentPosts  }}    
                         <section class="recent-post">
-                            <img class="recent-post__picture" src="{{ .Background }}" alt="post picture">
-                            <div class="recent-post_link__theme"><span class="recent-post_link__theme__label {{ .Theme }}">{{ .Theme }}</span></div>
-                            <h3 class="recent-post__link-tagline">{{ .Title }}</h3>
-                            <p class="recent-post__link-text">{{ .Subtitle }}</p>
-                            <img class="recent-post__border-line" src="../static/Sources/Rectangle-for-post.png" alt="gray line">
-                            <div class="recent-post__link-info">
-                                <img class="post__link-Author-img" src="{{ .AuthorImage }}" alt="William-Wong.svg">
-                                <span class="recent-post__link-Author-name">{{ .Author }}</span>
-                                <span class="recent-post__link-date">{{ .Date }}</span>
-                            </div>  
+                            <a class="recent-post_link" href="{{ .PostURL }}">
+                                <img class="recent-post__picture" src="{{ .Background }}" alt="post picture">
+                                <div class="recent-post_link__theme"><span class="recent-post_link__theme__label {{ .Theme }}">{{ .Theme }}</span></div>
+                                <h3 class="recent-post__link-tagline">{{ .Title }}</h3>
+                                <p class="recent-post__link-text">{{ .Subtitle }}</p>
+                                <img class="recent-post__border-line" src="../static/Sources/Rectangle-for-post.png" alt="gray line">
+                                <div class="recent-post__link-info">
+                                    <img class="post__link-Author-img" src="{{ .AuthorImage }}" alt="William-Wong.svg">
+                                    <span class="recent-post__link-Author-name">{{ .Author }}</span>
+                                    <span class="recent-post__link-date">{{ .Date }}</span>
+                                </div>
+                            </a>  
                         </section>
                     {{ end }}  
             </article>     
@@ -98,8 +100,8 @@
                     <div class="feedback">
                         <h2 class="feedback__tagline text_ligth">{{ .FeedbackTitle }}</h2>
                         <div class="feedback__tool">    
-                            <input class="feedback__tool__input" type="email" id="email" placeholder="{{ .InputPlaceholder }}">
-                            <button class="feedback__tool__button"> <span>{{ .InputButtonText }}</span> </button>
+                            <input class="feedback__tool__input"  type="email" id="email" placeholder="{{ .InputPlaceholder }}">
+                            <button class="feedback__tool__button" onclick="alert('Клик!')"> <span>{{ .InputButtonText }}</span> </button>
                         </div>
                     </div>
                 {{ end }}

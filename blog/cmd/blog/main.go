@@ -7,6 +7,7 @@ import (
 	"net/http"
 
 	_ "github.com/go-sql-driver/mysql"
+	"github.com/gorilla/mux"
 	"github.com/jmoiron/sqlx"
 )
 
@@ -16,18 +17,18 @@ const (
 )
 
 func main() {
-	db, err := sql.Open("mysql", "root:BaStInDa06081981!@tcp(localhost:3306)/blog")
+	db, err := OpenDB()
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	dbx := sqlx.NewDb(db, dbDriverName)
 
-	mux := http.NewServeMux()
+	mux := mux.NewRouter()
 	mux.HandleFunc("/home", index(dbx))
-	mux.HandleFunc("/post", post)
+	mux.HandleFunc("/post/{postID}", post(dbx))
 
-	mux.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("./static"))))
+	mux.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir("./static"))))
 
 	fmt.Println("Start server " + port)
 	err = http.ListenAndServe(port, mux)
@@ -36,7 +37,7 @@ func main() {
 	}
 }
 
-func Open() (*sql.DB, error) {
+func OpenDB() (*sql.DB, error) {
 	// Здесь прописываем соединение к базе данных
 	return sql.Open(dbDriverName, "root:BaStInDa06081981!@tcp(localhost:3306)/blog?charset=utf8mb4&collation=utf8mb4_unicode_ci&parseTime=true")
 }

@@ -1,10 +1,15 @@
 package main
 
 import (
+	"database/sql"
+	"fmt"
 	"html/template"
 	"log"
 	"net/http"
 
+	"strconv"
+
+	"github.com/gorilla/mux"
 	"github.com/jmoiron/sqlx"
 )
 
@@ -12,17 +17,16 @@ type indexPage struct {
 	TopBlock           []topBlocks
 	Themes             []themesData
 	FeaturedPostsTitle string
-	FeaturedPosts      []featuredPostsBlock
+	FeaturedPosts      []*featuredPostsBlock
 	RecentPostsTitle   string
-	RecentPosts        []recentPostsBlock
+	RecentPosts        []*recentPostsBlock
 	DownBlock          []downBlocks
 }
 
 type postPage struct {
-	Header      []headerData
-	PostTagline []postTaglineData
-	Post        []postData
-	DownBlock   []downBlocks
+	Header    []headerData
+	Post      []postData
+	DownBlock []downBlocks
 }
 
 type topBlocks struct {
@@ -36,10 +40,11 @@ type headerData struct {
 }
 
 type headerNavData struct {
-	One   string
-	Two   string
-	Three string
-	Four  string
+	One    string
+	OneUrl string
+	Two    string
+	Three  string
+	Four   string
 }
 
 type taglineData struct {
@@ -58,6 +63,7 @@ type themesData struct {
 }
 
 type featuredPostsBlock struct {
+	PostID      string `db:"post_id"`
 	Theme       string `db:"theme"`
 	Title       string `db:"title"`
 	Subtitle    string `db:"subtitle"`
@@ -65,9 +71,11 @@ type featuredPostsBlock struct {
 	AuthorImage string `db:"author_url"`
 	Date        string `db:"publish_date"`
 	Background  string `db:"image_url"`
+	PostURL     string
 }
 
 type recentPostsBlock struct {
+	PostID      string `db:"post_id"`
 	Theme       string `db:"theme"`
 	Title       string `db:"title"`
 	Subtitle    string `db:"subtitle"`
@@ -75,6 +83,7 @@ type recentPostsBlock struct {
 	AuthorImage string `db:"author_url"`
 	Date        string `db:"publish_date"`
 	Background  string `db:"image_url"`
+	PostURL     string
 }
 
 type downBlocks struct {
@@ -100,17 +109,11 @@ type footerNavData struct {
 	Four  string
 }
 
-type postTaglineData struct {
-	Title       string
-	Subtitle    string
-	PostPicture string
-}
-
 type postData struct {
-	ParFirst  string
-	ParSecond string
-	ParThird  string
-	ParFourth string
+	Title       string `db:"title"`
+	Subtitle    string `db:"subtitle"`
+	PostPicture string `db:"image_url"`
+	Content     string `db:"content"`
 }
 
 func index(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
@@ -155,26 +158,49 @@ func index(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func post(w http.ResponseWriter, r *http.Request) {
-	ts, err := template.ParseFiles("pages/the-road-ahead.html") // Главная страница блога
-	if err != nil {
-		http.Error(w, "Internal Server Error", 500) // В случае ошибки парсинга - возвращаем 500
-		log.Println(err.Error())                    // Используем стандартный логгер для вывода ошбики в консоль
-		return                                      // Не забываем завершить выполнение ф-ии
-	}
+func post(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
+	return func(w http.ResponseWriter, r *http.Request) {
+		postIDStr := mux.Vars(r)["postID"]
 
-	Data := postPage{
-		Header:      Header(),
-		PostTagline: PostTagline(),
-		Post:        Post(),
-		DownBlock:   DownBlock(),
-	}
+		postID, err := strconv.Atoi(postIDStr)
+		if err != nil {
+			http.Error(w, "Invalid order id", 403)
+			log.Println(err)
+			return
+		}
 
-	err = ts.Execute(w, Data) // Заставляем шаблонизатор вывести шаблон в тело ответа
-	if err != nil {
-		http.Error(w, "Internal Server Error", 500)
-		log.Println(err.Error())
-		return
+		post, err := postByID(db, postID)
+		if err != nil {
+			if err == sql.ErrNoRows {
+				http.Error(w, "Order not found", 404)
+				log.Println(err)
+				return
+			}
+
+			http.Error(w, "Server Error", 500)
+			log.Println(err)
+			return
+		}
+
+		ts, err := template.ParseFiles("pages/post.html")
+		if err != nil {
+			http.Error(w, "Internal Server Error", 500)
+			log.Println(err.Error())
+			return
+		}
+
+		data := postPage{
+			Header:    Header(),
+			Post:      post,
+			DownBlock: DownBlock(),
+		}
+
+		err = ts.Execute(w, data)
+		if err != nil {
+			http.Error(w, "Internal Server Error", 500)
+			log.Println(err.Error())
+			return
+		}
 	}
 }
 
@@ -199,10 +225,11 @@ func Header() []headerData {
 func HeaderNav() []headerNavData {
 	return []headerNavData{
 		{
-			One:   "HOME",
-			Two:   "CATEGORIES",
-			Three: "ABOUT",
-			Four:  "CONTACT",
+			One:    "HOME",
+			OneUrl: "/home",
+			Two:    "CATEGORIES",
+			Three:  "ABOUT",
+			Four:   "CONTACT",
 		},
 	}
 }
@@ -230,9 +257,10 @@ func Themes() []themesData {
 	}
 }
 
-func FeaturedPosts(db *sqlx.DB) ([]featuredPostsBlock, error) {
+func FeaturedPosts(db *sqlx.DB) ([]*featuredPostsBlock, error) {
 	const query = `
 		SELECT
+		  post_id,
 		  theme,
 		  title,
 		  subtitle,
@@ -245,19 +273,26 @@ func FeaturedPosts(db *sqlx.DB) ([]featuredPostsBlock, error) {
 		WHERE featured = 1
 	`
 
-	var featuredposts []featuredPostsBlock
+	var featuredposts []*featuredPostsBlock
 
 	err := db.Select(&featuredposts, query)
 	if err != nil {
 		return nil, err
 	}
 
+	for _, post := range featuredposts {
+		post.PostURL = "/post/" + post.PostID // Формируем исходя из ID ордера в базе
+	}
+
+	fmt.Println(featuredposts)
+
 	return featuredposts, nil
 }
 
-func RecentPosts(db *sqlx.DB) ([]recentPostsBlock, error) {
+func RecentPosts(db *sqlx.DB) ([]*recentPostsBlock, error) {
 	const query = `
 		SELECT
+		  post_id,
 		  theme,
 		  title,
 		  subtitle,
@@ -270,14 +305,43 @@ func RecentPosts(db *sqlx.DB) ([]recentPostsBlock, error) {
 		WHERE featured = 0
 	`
 
-	var mostrecent []recentPostsBlock
+	var mostrecent []*recentPostsBlock
 
 	err := db.Select(&mostrecent, query)
 	if err != nil {
 		return nil, err
 	}
 
+	for _, post := range mostrecent {
+		post.PostURL = "/post/" + post.PostID // Формируем исходя из ID ордера в базе
+	}
+
+	fmt.Println(mostrecent)
+
 	return mostrecent, nil
+}
+
+func postByID(db *sqlx.DB, postID int) ([]postData, error) {
+	const query = `
+		SELECT
+		  title,
+		  subtitle,
+		  image_url,
+		  content
+		FROM
+		  post
+	    WHERE
+		  post_id = ?
+	`
+
+	var post []postData
+
+	err := db.Select(&post, query, postID)
+	if err != nil {
+		return nil, err
+	}
+
+	return post, nil
 }
 
 func DownBlock() []downBlocks {
@@ -319,23 +383,24 @@ func FooterNav() []footerNavData {
 	}
 }
 
-func PostTagline() []postTaglineData {
-	return []postTaglineData{
-		{
-			Title:       "The Road Ahead.",
-			Subtitle:    "The road ahead might be paved - it might not be.",
-			PostPicture: "../static/Sources/the-road-ahead-background.jpg",
-		},
-	}
-}
+func Post(db *sqlx.DB) ([]postData, error) {
+	const query = `
+		SELECT
+		  title,
+		  subtitle,
+		  image_url,
+		  text
+		FROM
+		  post
+		WHERE featured = 0
+	`
 
-func Post() []postData {
-	return []postData{
-		{
-			ParFirst:  "Dark spruce forest frowned on either side the frozen waterway. The trees had been stripped by a recent wind of their white covering of frost, and they seemed to lean towards each other, black and ominous, in the fading light. A vast silence reigned over the land. The land itself was a desolation, lifeless, without movement, so lone and cold that the spirit of it was not even that of sadness. There was a hint in it of laughter, but of a laughter more terrible than any sadness—a laughter that was mirthless as the smile of the sphinx, a laughter cold as the frost and partaking of the grimness of infallibility. It was the masterful and incommunicable wisdom of eternity laughing at the futility of life and the effort of life. It was the Wild, the savage, frozen-hearted Northland Wild.",
-			ParSecond: "But there was life, abroad in the land and defiant. Down the frozen waterway toiled a string of wolfish dogs. Their bristly fur was rimed with frost. Their breath froze in the air as it left their mouths, spouting forth in spumes of vapour that settled upon the hair of their bodies and formed into crystals of frost. Leather harness was on the dogs, and leather traces attached them to a sled which dragged along behind. The sled was without runners. It was made of stout birch-bark, and its full surface rested on the snow. The front end of the sled was turned up, like a scroll, in order to force down and under the bore of soft snow that surged like a wave before it. On the sled, securely lashed, was a long and narrow oblong box. There were other things on the sled—blankets, an axe, and a coffee-pot and frying-pan; but prominent, occupying most of the space, was the long and narrow oblong box.",
-			ParThird:  "In advance of the dogs, on wide snowshoes, toiled a man. At the rear of the sled toiled a Second man. On the sled, in the box, lay a third man whose toil was over,—a man whom the Wild had conquered and beaten down until he would never move nor struggle again. It is not the way of the Wild to like movement. Life is an offence to it, for life is movement; and the Wild aims always to destroy movement. It freezes the water to prevent it running to the sea; it drives the sap out of the trees till they are frozen to their mighty hearts; and most ferociously and terribly of all does the Wild harry and crush into submission man—man who is the most restless of life, ever in revolt against the dictum that all movement must in the end come to the cessation of movement.",
-			ParFourth: "But at front and rear, unawed and indomitable, toiled the two men who were not yet dead. Their bodies were covered with fur and soft-tanned leather. Eyelashes and cheeks and lips were so coated with the crystals from their frozen breath that their faces were not discernible. This gave them the seeming of ghostly masques, undertakers in a spectral world at the funeral of some ghost. But under it all they were men, penetrating the land of desolation and mockery and silence, puny adventurers bent on colossal adventure, pitting themselves against the might of a world as remote and alien and pulseless as the abysses of space.",
-		},
+	var post []postData
+
+	err := db.Select(&post, query)
+	if err != nil {
+		return nil, err
 	}
+
+	return post, nil
 }

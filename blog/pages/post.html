@@ -19,7 +19,7 @@
                     <h1 class="header__logo text_dark">{{ .Escape }}</h1>
                     {{ range .HeaderNav }}
                         <nav class="header__nav-bar">   
-                            <a class="nav-bar__labels text_dark" href="home"><span>{{ .One }}</span></a>
+                            <a class="nav-bar__labels text_dark" href="{{ .OneUrl }}"><span>{{ .One }}</span></a>
                             <a class="nav-bar__labels text_dark" href="#"><span>{{ .Two }}</span></a>
                             <a class="nav-bar__labels text_dark" href="#"><span>{{ .Three }}</span></a>
                             <a class="nav-bar__labels text_dark" href="#"><span>{{ .Four }}</span></a>
@@ -28,28 +28,15 @@
                 </div>
             </header>
         {{ end }}
-        {{ range .PostTagline }}
+        {{ range .Post }}
             <div class="tagline__block_dark">
                 <h2 class="tagline__header text_dark">{{ .Title }}</h2>
                 <p class="tagline__text_dark text_dark">{{ .Subtitle }}</p>
                 <img class="tagline__post-pictures" src="{{ .PostPicture }}" alt="northern lights">
             </div>
-        {{ end }}
-        {{ range .Post }}
             <div class="post">
                 <div class="post__text">
-                    <p class="post__text-paragrph">
-                        {{ .ParFirst }}
-                    </p>
-                    <p class="post__text-paragrph">
-                        {{ .ParSecond }} 
-                    </p>
-                    <p class="post__text-paragrph">
-                        {{ .ParThird }}
-                    </p>
-                    <p class="post__text-paragrph">
-                        {{ .ParFourth }}    
-                    </p>
+                    {{ .Content }}
                 </div>
             </div>
         {{ end }}
