@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="../static/Sources/favicon.ico" type="image/x-icon">
+        <Title>Escape.</Title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Oxygen:wght@300;400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="../static/style.css">
+    </head>
+    <body class="main">
+        {{ range .TopBlock }}    
+            <div class="top-block"> 
+            {{ range .Header }}   
+                <header class="header">
+                    <div class="header__line">
+                        <h1 class="header__logo text_ligth">{{ .Escape }}</h1>
+                        {{ range .HeaderNav }}    
+                            <nav class="header__nav-bar nav-bar">
+                                <a class="nav-bar__labels text_ligth" href="home"><span>{{ .One }}</span></a> 
+                                <a class="nav-bar__labels text_ligth" href="#"><span>{{ .Two }}</span></a> 
+                                <a class="nav-bar__labels text_ligth" href="#"><span>{{ .Three }}</span></a> 
+                                <a class="nav-bar__labels text_ligth" href="#"><span>{{ .Four }}</span></a>
+                            </nav>
+                        {{ end }}     
+                    </div>
+                </header>
+            {{ end }}
+            {{ range .Tagline }}    
+                <div class="tagline">
+                    <h2 class="tagline__header text_ligth">{{ .TaglineHeader }}</h2>
+                    <p class="tagline__text">{{ .TaglineText }}</p>
+                    <button class="tagline__button"> <span>{{ .TaglineButtonText }}</span> </button>
+                </div> 
+            {{ end }}    
+            </div>
+        {{ end }} 
+        {{ range .Themes }}     
+            <div class="themes">   
+                <nav class="themes__navigate container"> 
+                    <a class="themes__navigate-labels" href="#">{{ .First }}</a> 
+                    <a class="themes__navigate-labels" href="#">{{ .Second }}</a> 
+                    <a class="themes__navigate-labels" href="#">{{ .Third }}</a> 
+                    <a class="themes__navigate-labels" href="#">{{ .Fourth }}</a> 
+                    <a class="themes__navigate-labels" href="#">{{ .Fiveth }}</a> 
+                    <a class="themes__navigate-labels" href="#">{{ .Sixth }}</a> 
+                </nav>   
+            </div>
+        {{ end }}
+        <div class="container">
+            <article class="featured">    
+                <h2 class="featured__head">{{ .FeaturedPostsTitle }}</h2>
+                <div class="featured__post_grid">
+                    {{ range .FeaturedPosts }}  
+                        <section class="featured_post">     
+                            <a class="featured__post_link" href="{{ .PostURL }}">
+                                <div class="featured__post_link__block">
+                                    <img class="featured__post__background" src="{{ .Background }}" alt="Post picture">
+                                    <div class="featured__post_link__theme"><span class="featured__post_link__theme__label {{ .Theme }}">{{ .Theme }}</span></div>
+                                    <h3 class="featured__post_link__tagline">{{ .Title }}</h3>
+                                    <p class="featured__post_link__text">{{ .Subtitle }}</p>
+                                    <div class="featured__post_link__info">
+                                        <img class="post__link-Author-img" src="{{ .AuthorImage }}" alt="Mat-Vogles">
+                                        <span class="featured__post_link-Author-name">{{ .Author }}</span> 
+                                        <span class="featured__post_link-date">{{ .Date }}</span>
+                                    </div>
+                                </div>     
+                            </a>     
+                        </section>
+                    {{ end }}
+                </div>         
+            </article>
+            <article class="most_recent">      
+                <h2 class="most_recent__head">{{ .RecentPostsTitle }}</h2>
+                <div class="most_recent-post_grid">
+                    {{ range .RecentPosts  }}    
+                        <section class="recent-post">
+                            <a class="recent-post_link" href="{{ .PostURL }}">
+                                <img class="recent-post__picture" src="{{ .Background }}" alt="post picture">
+                                <div class="recent-post_link__theme"><span class="recent-post_link__theme__label {{ .Theme }}">{{ .Theme }}</span></div>
+                                <h3 class="recent-post__link-tagline">{{ .Title }}</h3>
+                                <p class="recent-post__link-text">{{ .Subtitle }}</p>
+                                <img class="recent-post__border-line" src="../static/Sources/Rectangle-for-post.png" alt="gray line">
+                                <div class="recent-post__link-info">
+                                    <img class="post__link-Author-img" src="{{ .AuthorImage }}" alt="William-Wong.svg">
+                                    <span class="recent-post__link-Author-name">{{ .Author }}</span>
+                                    <span class="recent-post__link-date">{{ .Date }}</span>
+                                </div>
+                            </a>  
+                        </section>
+                    {{ end }}  
+            </article>     
+        </div>
+        {{ range .DownBlock }}
+            <div class="down-block">
+                {{ range .Feedback }}   
+                    <div class="feedback">
+                        <h2 class="feedback__tagline text_ligth">{{ .FeedbackTitle }}</h2>
+                        <div class="feedback__tool">    
+                            <input class="feedback__tool__input"  type="email" id="email" placeholder="{{ .InputPlaceholder }}">
+                            <button class="feedback__tool__button" onclick="alert('Клик!')"> <span>{{ .InputButtonText }}</span> </button>
+                        </div>
+                    </div>
+                {{ end }}
+                {{ range .Footer }}    
+                    <footer class="footer">    
+                        <div class="footer-shade">
+                            <div class="footer__line">
+                                <h1 class="footer__logo">{{ .Escape }}</h1>
+                                {{ range .FooterNav }}
+                                    <nav class="footer__nav-bar">
+                                        <a class="footer__nav-bar__labels" href="#"><span>{{ .One }}</span></a> 
+                                        <a class="footer__nav-bar__labels" href="#"><span>{{ .Two }}</span></a> 
+                                        <a class="footer__nav-bar__labels" href="#"><span>{{ .Three }}</span></a> 
+                                        <a class="footer__nav-bar__labels" href="#"><span>{{ .Four }}</span></a>
+                                    </nav> 
+                                {{ end }}
+                            </div>  
+                        </div>
+                    </footer>
+                {{ end }}      
+            </div>
+        {{ end }}
+    </body>
+</html>

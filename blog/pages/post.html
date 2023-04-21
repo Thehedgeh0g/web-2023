@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="../static/Sources/favicon.ico" type="image/x-icon">
+        <Title>Escape.</Title>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Oxygen:wght@300;400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="../static/style.css">
+    </head>
+    <body class="main">
+        {{ range .Header }}
+            <header class="header">
+                <div class="header__line">
+                    <h1 class="header__logo text_dark">{{ .Escape }}</h1>
+                    {{ range .HeaderNav }}
+                        <nav class="header__nav-bar">   
+                            <a class="nav-bar__labels text_dark" href="{{ .OneUrl }}"><span>{{ .One }}</span></a>
+                            <a class="nav-bar__labels text_dark" href="#"><span>{{ .Two }}</span></a>
+                            <a class="nav-bar__labels text_dark" href="#"><span>{{ .Three }}</span></a>
+                            <a class="nav-bar__labels text_dark" href="#"><span>{{ .Four }}</span></a>
+                        </nav> 
+                    {{ end }}    
+                </div>
+            </header>
+        {{ end }}
+        {{ range .Post }}
+            <div class="tagline__block_dark">
+                <h2 class="tagline__header text_dark">{{ .Title }}</h2>
+                <p class="tagline__text_dark text_dark">{{ .Subtitle }}</p>
+                <img class="tagline__post-pictures" src="{{ .PostPicture }}" alt="northern lights">
+            </div>
+            <div class="post">
+                <div class="post__text">
+                    {{ .Content }}
+                </div>
+            </div>
+        {{ end }}
+        {{ range .DownBlock }}
+            <div class="down-block">
+                {{ range .Feedback }}   
+                    <div class="feedback">
+                        <h2 class="feedback__tagline text_ligth">{{ .FeedbackTitle }}</h2>
+                        <div class="feedback__tool">    
+                            <input class="feedback__tool__input" type="email" id="email" placeholder="{{ .InputPlaceholder }}">
+                            <button class="feedback__tool__button"> <span>{{ .InputButtonText }}</span> </button>
+                        </div>
+                    </div>
+                {{ end }}
+                {{ range .Footer }}    
+                    <footer class="footer">    
+                        <div class="footer-shade">
+                            <div class="footer__line">
+                                <h1 class="footer__logo">{{ .Escape }}</h1>
+                                {{ range .FooterNav }}
+                                    <nav class="footer__nav-bar">
+                                        <a class="footer__nav-bar__labels" href="home"><span>{{ .One }}</span></a> 
+                                        <a class="footer__nav-bar__labels" href="#"><span>{{ .Two }}</span></a> 
+                                        <a class="footer__nav-bar__labels" href="#"><span>{{ .Three }}</span></a> 
+                                        <a class="footer__nav-bar__labels" href="#"><span>{{ .Four }}</span></a>
+                                    </nav> 
+                                {{ end }}
+                            </div>  
+                        </div>
+                    </footer>
+                {{ end }}      
+            </div>
+        {{ end }}
+    </body>
+</html>
