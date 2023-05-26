@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="../static/sources/favicon.ico" type="image/x-icon">
+        <Title>Escape.</Title>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Oxygen:wght@300;400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="../static/admin-style.css">
+        <script src="../static/JS/admin.js"></script>
+    </head>
+    <body class="main" >
+        <header class="header-admin">
+            <div class="header-admin__box">
+                {{ range .Header }}
+                    <div class="header-admin__box__line">
+                        <img class="header-admin__box__line__logo" src="{{ .Escape }}" alt="Escape.author">
+                        <div class="header-admin__box__line__menu">
+                            <img src="{{ .Avatar }}" alt="">
+                            <img src="{{ .Exit }}" alt="">
+                        </div> 
+                    </div>
+                {{ end }}
+            </div>
+        </header>
+        <div class="container">
+            <div class="container-admin">
+                {{ range .MainTop }}
+                <div>
+                    <div class="admin-tagline">
+                        <div class="admin-tagline__text">
+                            <h1 class="admin-tagline__text__title">{{ .Title }}</h1>
+                            <p class="admin-tagline__text__subtitle">{{ .Subtitle }}</p>
+                        </div>
+                        <div>
+                            <button class="admin-tagline__publish-button" onclick="Click()"><span>{{ .Button }}</span></button>
+                        </div>
+                    </div>
+                    <div id="message" class="message"></div>
+                </div>
+                {{ end }}
+                {{ range .MainInfo }}
+                    <div class="cards">
+                        <div class="cards__main-info">
+                            <h2 class="title">{{ .Title }}</h2>
+                            <div class="grid">
+                                <div class="constructor">
+                                    {{ range .Fields }} 
+                                        <form>
+                                            <div id="Theme-block" class="constructor__block">
+                                                <p class="constructor__block__inp-title">{{ .Theme }}</p>
+                                                <input id="Theme" class="constructor__block__text-inp" type="text" placeholder="Theme" onfocus="Select('Theme')" onblur="NotSelect('Theme')">
+                                            </div>
+                                            <div id="Title-block" class="constructor__block">
+                                                <p class="constructor__block__inp-title">{{ .Title }}</p>
+                                                <input id="Title" class="constructor__block__text-inp" type="text" placeholder="New post" onfocus="Select('Title')" onblur="NotSelect('Title')">
+                                            </div>
+                                            <div id="Subtitle-block" class="constructor__block">
+                                                <p class="constructor__block__inp-title">{{ .Description }}</p>
+                                                <input class="constructor__block__text-inp" type="text" name="Subtitle" id="Subtitle" placeholder="Please, enter any description" onfocus="Select('Subtitle')" onblur="NotSelect('Subtitle')">                                            </div>
+                                            <div id="Author-name-block" class="constructor__block">
+                                                <p class="constructor__block__inp-title">{{ .Author }}</p>
+                                                <input class="constructor__block__text-inp" type="text" name="author-name" id="Author-name" onfocus="Select('Author-name')" onblur="NotSelect('Author-name')">
+                                            </div>
+                                            <div class="constructor__block">
+                                                <p class="constructor__block__inp-title">{{ .AuthorPhoto }}</p>
+                                                <div style="display: inline-flex; align-items: center; justify-content: space-between;" id="author-photo-block">
+                                                    <div  style="display: inline-flex; align-items: center; justify-content: space-between; width: 228px;">
+                                                        <label id="author-label" class="constructor__block__inp-style" for="author-photo">
+                                                            <img id="author-icon" class="constructor__block__inp-style-icon" src="{{ .AuthorImage }}" alt="Avatar">
+                                                            <p>{{ .Upload }}</p>
+                                                        </label>
+                                                        <label id="remove-author" class="constructor__block__inp-style" onclick="RemoveIcon()"></label>
+                                                    </div>
+                                                    
+                                                    <input id="author-photo" type="file" accept=".png, .jpeg, .jpg" style="visibility: hidden;" onchange="ChangeIcon()">
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="constructor__block">
+                                                <p class="constructor__block__inp-title">{{ .Date }}</p>
+                                                <input type="date" class="constructor__block__text-inp" name="data" id="data" onchange="datachange()" >
+                                            </div>
+                                            <div class="constructor__block-bigImage">
+                                                <p class="constructor__block__inp-title">{{ .TitleImage }}</p>
+                                                <div id="big-block-image" >
+                                                    <div style="display: inline-flex; align-items: center; justify-content: space-between; width: 228px;">
+                                                        <label id="big-image-label" class="constructor__block__inp-style-Image" for="big-hero-image">
+                                                            <img id="big-image" class="constructor__block__inp-style-icon-big" src="{{ .BigImageURL }}" alt="Avatar">
+                                                        </label>
+                                                        <label id="big-remove-image" class="main-info__label" onclick="DeleteImage('big')"></label>
+                                                    </div>
+                                                </div>
+                                                <p class="constructor__block__inp-title-img">{{ .BigNote }}</p>
+                                                <input type="file" id="big-hero-image" class="constructor__block__inp"  accept=".png, .jpeg, .jpg" style="visibility: hidden;" onchange="ChangeImage('big')">
+                                            </div>
+                                            <div class="constructor__block-smallImage">
+                                                <p class="constructor__block__inp-title">{{ .TitleImage }}</p>
+                                                <div  id="small-block-image"  class="input-small-frame">
+                                                    <div style="display: inline-flex; align-items: center; justify-content: space-between; width: 228px;">
+                                                        <label id="small-image-label" class="constructor__block__inp-style-Image" for="small-hero-image">
+                                                            <img id="small-image" class="constructor__block__inp-style-icon-small" src="{{ .SmallImageURL }}" alt="Avatar">
+                                                        </label>
+                                                        <label id="small-remove-image" class="main-info__label" onclick="DeleteImage('small')"></label>
+                                                    </div>
+                                                </div>
+                                                <p class="constructor__block__inp-title-img">{{ .SmallNote }}</p>
+                                                <input type="file" id="small-hero-image" class="constructor__block__inp"    accept=".png, .jpeg, .jpg" style="visibility: hidden;" onchange="ChangeImage('small')">
+                                            </div>
+                                        </form>
+                                    {{ end }}
+                                </div> 
+                                {{ range .Preview}} 
+                                    <div class="preview">
+                                        {{ range .Article }}
+                                            <div class="preview__article">
+                                                <p class="inp-title">{{ .Label }}</p>
+                                                <div class="preview_article__out-border">
+                                                    <div class="preview_article__in-border">
+                                                        <img src="{{ .FrameURL }}" alt="">
+                                                        <div class="preview_article__in-border__post">
+                                                            <span id="preview-title-article" class="preview_article__in-border__post__title">{{ .Title }}</span>
+                                                            <p id="preview-subtitle-article" class="preview_article__in-border__post__subtitle">{{ .Subtitle }}</p>
+                                                            <img id="preview-big-image" class="preview_article__in-border__post__img" src="{{ .Background }}" alt="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="gradient-right"></div>
+                                                <div class="gradient-down-article"></div>
+                                            </div>
+                                        {{ end }}
+                                        {{ range .PostCard }}
+                                            <div  class="preview__article">
+                                                <p class="inp-title">{{ .Label }}</p>
+                                                <div class="preview_article__out-border">
+                                                    <div class="preview__post-card__in-border">
+                                                        <img id="preview-small-image" class="preview-small-image" src="{{ .Background }}" alt="post picture">
+                                                        <h3 id="preview-title" class="preview__post-card__tagline">{{ .Title }}</h3>
+                                                        <p id="preview-subtitle" class="preview__post-card__subtitle">{{ .Subtitle }}</p>
+                                                        <img class="recent-post__border-line" src="../static/sources/Rectangle-for-post.png" alt="gray line">
+                                                        <div class="preview__post-card__info">
+                                                            <img id="preview-author-photo" class="preview__post-card__info__Author-img" src="{{ .AuthorImage }}" alt="">
+                                                            <span id="preview-author-name" class="preview__post-card__info__Author-name">{{ .Author }}</span>
+                                                            <span id="preview-data" class="recent-post__link-date">{{ .Date }}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="gradient-right"></div>
+                                                <div class="gradient-down-article"></div>
+                                            </div>
+                                        {{ end }}
+                                    </div>
+                                {{ end }}
+                            </div>
+                            
+                        </div>
+                    </div>
+                {{ end }}
+                {{ range .Content }}
+                    <div class="content-inp">
+                        <h2 class="content__title">{{ .Title }}</h2>
+                        <p class="inp-title">{{ .Comment }}</p>
+                        <textarea id="content" class="content__inp-area" placeholder="Type anything you want ..."  onchange="ChangeContent()"></textarea>
+                    </div>
+                {{ end }}
+            </div>
+        </div>  
+    </body>
+</html>

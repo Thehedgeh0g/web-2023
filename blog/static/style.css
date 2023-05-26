@@ -3,7 +3,7 @@
 }
 
 .top-block {
-    Background-image: url('../static/Sources/Header-Background.jpg');
+    Background-image: url('../static/sources/Header-Background.jpg');
     Background-color: #DD783F;
     Background-size: cover;
     top: 0px;
@@ -215,7 +215,6 @@
     text-decoration: none;
     color: white;
     margin: 0;
-    
 }
 
 .featured__post__background {
@@ -240,7 +239,6 @@
     height: 26px;
     padding-top: 20px;
     margin-left: 20px;
-    
 }
 
 .featured__post_link__theme__label {
@@ -503,9 +501,8 @@
 }
 
 .down-block {
-    Background-image: url(../static/Sources/footer-Background.jpg);
+    Background-image: url(../static/sources/footer-Background.jpg);
     Background-size: cover;
-
 }
 
 .feedback {
@@ -615,4 +612,10 @@
     text-decoration: none;
     margin: 0 10px;
     transition: color .2s linear;
+}
+
+.post__link-Author-img{
+    width: 26px;
+    height: 26px;
+    border-radius: 13px;
 }

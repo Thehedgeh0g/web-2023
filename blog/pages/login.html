@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="../static/sources/favicon.ico" type="image/x-icon">
+        <Title>Escape.</Title>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Oxygen:wght@300;400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="../static/login-style.css">
+        
+        <script defer src="../static/js/login.js"></script>
+    </head>
+    <body class="main" id="container">
+        {{ range .Header}}
+        <div class="title">
+            <img src="{{ .Escape }}" alt="Escape Author">
+            <p class="title__subtitle">{{ .Title }}</p>
+        </div> 
+        {{ end }}
+        {{ range .Main }}
+        <div  class="login-box">
+            <h1 class="login-box__title" >{{ .Title }}</h1>
+            <form class="login-box__form">
+                <div id="message"></div>
+                <div id="login-block" class="login-box__email">
+                    <p class="login-box__comment">{{ .Email }}</p>
+                    <input id="login-field" class="login-box__field" type="email" onfocus="Select('login')" onblur="NotSelect('login')" type="email">
+                </div>
+                <div id="password-block" class="login-box__pass">
+                    <p class="login-box__comment">{{ .Pass }}</p>
+                    <div>
+                        <input id="password-field" class="login-box__field" onfocus="Select('password')" onblur="NotSelect('password')" type="password">
+                        <img onclick="password_visibility()" class="login-box__eye" src="../static/sources/eye.svg" alt="eye">
+                    </div>
+                    
+                </div>
+            </form>
+            <button class="login-box__button" onclick="Click()">{{ .Button }}</button>
+        </div>
+        {{ end }}
+    </body>
+</html>

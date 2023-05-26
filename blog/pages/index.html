@@ -4,27 +4,31 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" href="../static/Sources/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="../static/sources/favicon.ico" type="image/x-icon">
         <Title>Escape.</Title>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Oxygen:wght@300;400;700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="../static/style.css">
+        <link rel="stylesheet" href="../static/index-style.css">
+        <script src="../static/JS/index.js"></script>
     </head>
     <body class="main">
         {{ range .TopBlock }}    
             <div class="top-block"> 
             {{ range .Header }}   
-                <header class="header">
+                <header id="header" class="header">
                     <div class="header__line">
                         <h1 class="header__logo text_ligth">{{ .Escape }}</h1>
-                        {{ range .HeaderNav }}    
+                        {{ range .HeaderNav }}   
                             <nav class="header__nav-bar nav-bar">
                                 <a class="nav-bar__labels text_ligth" href="home"><span>{{ .One }}</span></a> 
                                 <a class="nav-bar__labels text_ligth" href="#"><span>{{ .Two }}</span></a> 
                                 <a class="nav-bar__labels text_ligth" href="#"><span>{{ .Three }}</span></a> 
                                 <a class="nav-bar__labels text_ligth" href="#"><span>{{ .Four }}</span></a>
                             </nav>
+                            <button class="header__burger-btn" onclick="Click()">
+                                <span class="burger-btn_line"></span><span class="burger-btn_line"></span><span class="burger-btn_line"></span>
+                            </button> 
                         {{ end }}     
                     </div>
                 </header>
@@ -40,7 +44,7 @@
         {{ end }} 
         {{ range .Themes }}     
             <div class="themes">   
-                <nav class="themes__navigate container"> 
+                <nav class="themes__navigate"> 
                     <a class="themes__navigate-labels" href="#">{{ .First }}</a> 
                     <a class="themes__navigate-labels" href="#">{{ .Second }}</a> 
                     <a class="themes__navigate-labels" href="#">{{ .Third }}</a> 
@@ -83,7 +87,7 @@
                                 <div class="recent-post_link__theme"><span class="recent-post_link__theme__label {{ .Theme }}">{{ .Theme }}</span></div>
                                 <h3 class="recent-post__link-tagline">{{ .Title }}</h3>
                                 <p class="recent-post__link-text">{{ .Subtitle }}</p>
-                                <img class="recent-post__border-line" src="../static/Sources/Rectangle-for-post.png" alt="gray line">
+                                <span class="recent-post__link-border"></span>
                                 <div class="recent-post__link-info">
                                     <img class="post__link-Author-img" src="{{ .AuthorImage }}" alt="William-Wong.svg">
                                     <span class="recent-post__link-Author-name">{{ .Author }}</span>
