@@ -13,10 +13,17 @@ let post = {
     "Content": null
 }
 
-const
-    readerAuthor = new FileReader();
+const readerAuthor = new FileReader();
     readerBig = new FileReader();
     readerSmall = new FileReader();
+
+function Exit()
+{
+    let XHR = new XMLHttpRequest();
+    XHR.open("POST", "/api/logout");
+    XHR.send("");
+    window.location.href = "/home"
+}
 
 function Click()
 {

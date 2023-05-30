@@ -3,6 +3,8 @@ let user = {
     "Password": null
 }
 
+let XHR = new XMLHttpRequest();
+
 function password_visibility(){
     password = document.getElementById('password-field');
 
@@ -64,7 +66,7 @@ function NotSelect(type)
             case 'login':
                 user.Email = field.value;
                 break;
-            case 'pass':
+            case 'password':
                 user.Password = field.value;
                 break;
         }
@@ -131,7 +133,19 @@ function Click()
             
         if(is_email_valid)
         {
-            window.location.replace("http://localhost:3000/admin")
+            let userdata = JSON.stringify(user);
+
+            XHR.open("POST", "/api/login");
+            XHR.send(userdata);
         }
+    }
+}
+
+XHR.onload = function() {
+    if (XHR.status != 200){
+        DataError();
+    }
+    else {
+        window.location.href = "/admin"
     }
 }
